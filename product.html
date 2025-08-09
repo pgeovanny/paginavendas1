@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
+  <script src="products.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -26,67 +27,82 @@
   <main id="conteudo" class="product-page">
     <div class="container product-container" id="product-root" aria-live="polite">
 
-      <!-- Header do produto -->
-      <section class="product-header-card" aria-labelledby="prod-title">
-        <div class="product-body">
+      <!-- CARD ÚNICO – Materiais -->
+      <section id="material-card" class="material-card" hidden>
+        <div class="material-body">
           <div class="back-wrap"><a class="btn btn-outline" href="index.html">← Voltar</a></div>
+          <div class="material-head">
+            <h1 id="m-title">Carregando…</h1>
+            <p id="m-sub"></p>
+          </div>
 
-          <h1 class="product-title" id="prod-title">Carregando…</h1>
-          <p class="product-sub" id="prod-sub"></p>
-          <div class="price-tag" id="prod-price" style="display:none;"></div>
+          <div id="m-copy" class="material-copy"></div>
 
-          <div class="actions">
-            <a class="btn btn-primary" id="btn-buy" href="#" target="_blank" rel="noopener">Comprar agora</a>
-            <a class="btn btn-outline" id="btn-sample" href="#" target="_blank" rel="noopener" style="display:none;">Ver amostra</a>
-            <a class="btn btn-outline" id="btn-whats" href="#" target="_blank" rel="noopener">Ainda tem dúvidas? Clique aqui</a>
+          <hr class="divider" />
+
+          <div class="price-actions">
+            <div class="price-tag" id="m-price"></div>
+            <a class="btn btn-primary" id="m-buy" href="#" target="_blank" rel="noopener">Comprar agora</a>
+            <a class="btn btn-primary" id="m-sample" href="#" target="_blank" rel="noopener" style="display:none;">Ver amostra</a>
+            <a class="btn btn-outline" id="m-whats" href="#" target="_blank" rel="noopener">Ainda tem dúvidas? Clique aqui</a>
           </div>
         </div>
       </section>
 
-      <!-- Copy em 3 cards -->
-      <section class="content-grid" id="copy-grid"></section>
+      <!-- MENTORIA (mantido) -->
+      <section id="mentoria-card" class="product-header-card" hidden>
+        <div class="product-body">
+          <div class="back-wrap"><a class="btn btn-outline" href="index.html">← Voltar</a></div>
+          <h1 class="product-title" id="t-title">Mentoria</h1>
+          <p class="product-sub" id="t-sub"></p>
+          <div class="actions">
+            <a class="btn btn-primary" id="t-buy" href="#comprar">Comprar agora</a>
+            <a class="btn btn-outline" id="t-whats" href="#" target="_blank" rel="noopener">Ainda tem dúvidas? Clique aqui</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Overlay da Mentoria -->
+      <div id="comprar-root" style="display:none;">
+        <div class="purchase-overlay" aria-hidden="true"></div>
+        <div class="purchase-panel" role="dialog" aria-modal="true" aria-labelledby="dlg-title">
+          <div class="purchase-head">
+            <h3 class="purchase-title" id="dlg-title">Escolha sua mentoria</h3>
+            <a class="close-x" href="#" aria-label="Fechar">✕</a>
+          </div>
+          <form class="stepper" onsubmit="return false;">
+            <div class="stage">
+              <div class="hint">1) Selecione o tipo</div>
+              <input type="radio" name="tipo" id="opt-com" />
+              <input type="radio" name="tipo" id="opt-sem" />
+              <div class="options">
+                <label for="opt-com">Mentoria com material</label>
+                <label for="opt-sem">Mentoria sem material</label>
+              </div>
+            </div>
+            <div class="stage">
+              <div class="hint">2) Escolha o plano</div>
+              <div class="plans-com">
+                <a id="link-com-mensal" class="plan-link" href="#" target="_blank" rel="noopener">Plano mensal</a>
+                <a id="link-com-trimestral" class="plan-link" href="#" target="_blank" rel="noopener">Plano trimestral</a>
+              </div>
+              <div class="plans-sem">
+                <a id="link-sem-mensal" class="plan-link" href="#" target="_blank" rel="noopener">Plano mensal</a>
+                <a id="link-sem-trimestral" class="plan-link" href="#" target="_blank" rel="noopener">Plano trimestral</a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
 
       <div class="back-wrap"><a class="btn btn-outline" href="index.html">← Voltar</a></div>
     </div>
   </main>
 
-  <!-- WhatsApp flutuante -->
+  <!-- FAB WhatsApp -->
   <a class="fab-whatsapp" id="fab-whats" href="#" target="_blank" rel="noopener" aria-label="Abrir WhatsApp">
     <img src="assets/whatsapp.svg" width="26" height="26" alt="WhatsApp" />
   </a>
-
-  <!-- Mentoria (mantido) -->
-  <div id="comprar-root" style="display:none;">
-    <div class="purchase-overlay" aria-hidden="true"></div>
-    <div class="purchase-panel" role="dialog" aria-modal="true" aria-labelledby="dlg-title">
-      <div class="purchase-head">
-        <h3 class="purchase-title" id="dlg-title">Escolha sua mentoria</h3>
-        <a class="close-x" href="#" aria-label="Fechar">✕</a>
-      </div>
-      <form class="stepper" onsubmit="return false;">
-        <div class="stage">
-          <div class="hint">1) Selecione o tipo</div>
-          <input type="radio" name="tipo" id="opt-com" />
-          <input type="radio" name="tipo" id="opt-sem" />
-          <div class="options">
-            <label for="opt-com">Mentoria com material</label>
-            <label for="opt-sem">Mentoria sem material</label>
-          </div>
-        </div>
-        <div class="stage">
-          <div class="hint">2) Escolha o plano</div>
-          <div class="plans-com">
-            <a id="link-com-mensal" class="plan-link" href="#" target="_blank" rel="noopener">Plano mensal</a>
-            <a id="link-com-trimestral" class="plan-link" href="#" target="_blank" rel="noopener">Plano trimestral</a>
-          </div>
-          <div class="plans-sem">
-            <a id="link-sem-mensal" class="plan-link" href="#" target="_blank" rel="noopener">Plano mensal</a>
-            <a id="link-sem-trimestral" class="plan-link" href="#" target="_blank" rel="noopener">Plano trimestral</a>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
 
   <footer class="site-footer" role="contentinfo">
     <div class="container footer-wrap">
@@ -95,20 +111,16 @@
     </div>
   </footer>
 
-  <!-- 1) Catálogo sempre carrega antes do script -->
-  <script src="products.js"></script>
-  <!-- 2) Script da página -->
   <script>
     const qs = (s, el=document) => el.querySelector(s);
-    const param = (k) => new URLSearchParams(location.search).get(k);
     const enc = encodeURIComponent;
+    const param = (k) => new URLSearchParams(location.search).get(k);
     qs('#year').textContent = new Date().getFullYear();
 
-    // Normaliza slugs e mapeia aliases
     function normalize(s){
       return (s||'').toString()
-        .normalize('NFD').replace(/[\u0300-\u036f]/g,'')   // remove acentos
-        .toLowerCase().replace(/[^a-z0-9]+/g,'-')         // troca por hífen
+        .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+        .toLowerCase().replace(/[^a-z0-9]+/g,'-')
         .replace(/(^-|-$)/g,'');
     }
     function resolveSlug(raw){
@@ -120,17 +132,14 @@
       };
       return alias[n] || n;
     }
-
-    function notFound() {
+    function notFound(){
       qs('#product-root').innerHTML = `
-        <section class="product-header-card">
-          <div class="product-body">
-            <h2 class="mt-0">Produto não encontrado</h2>
-            <p class="mt-8">Verifique o link. Você pode voltar para a página inicial e escolher novamente.</p>
-            <div class="actions"><a class="btn btn-primary" href="index.html">Voltar para a Home</a></div>
-          </div>
-        </section>`;
-      const fab = qs('#fab-whats'); if (fab) fab.style.display = 'none';
+        <section class="material-card"><div class="material-body">
+          <h2 class="mt-0">Produto não encontrado</h2>
+          <p class="mt-8">Verifique o link. Você pode voltar para a página inicial e escolher novamente.</p>
+          <div class="price-actions"><a class="btn btn-primary" href="index.html">Voltar para a Home</a></div>
+        </div></section>`;
+      qs('#fab-whats').style.display = 'none';
       document.title = 'Produto não encontrado – PG Concursos';
     }
 
@@ -141,52 +150,50 @@
       const data = window.PRODUCTS[key];
       if (!data) { notFound(); return; }
 
-      // SEO
       document.title = `${data.title} – PG Concursos`;
 
-      // Header
-      qs('#prod-title').textContent = data.title;
-      qs('#prod-sub').textContent = data.subtitle || '';
-      if (data.price) { qs('#prod-price').style.display = 'block'; qs('#prod-price').textContent = data.price; }
-
-      // Links/CTAs
-      const buyBtn = qs('#btn-buy');
-      const sampleBtn = qs('#btn-sample');
-
-      // WhatsApp
+      // WhatsApp (comum)
       const waNum = data.whatsNumber || '';
       const waMsg = data.whatsMessage || `Tenho dúvidas sobre ${data.title}`;
       const waLink = waNum ? `https://wa.me/${waNum}?text=${enc(waMsg)}` : '#';
-      qs('#btn-whats').href = waLink; qs('#fab-whats').href = waLink;
+      qs('#fab-whats').href = waLink;
 
-      // Amostra (opcional)
-      if (data.sampleUrl) { sampleBtn.href = data.sampleUrl; sampleBtn.style.display = 'inline-flex'; }
-
-      // Comprar
       if (data.type === 'mentoria') {
-        buyBtn.removeAttribute('target'); buyBtn.removeAttribute('rel'); buyBtn.href = '#comprar';
+        // Mostrar card de mentoria + overlay
+        const card = qs('#mentoria-card');
+        card.hidden = false;
+        qs('#t-title').textContent = data.title;
+        qs('#t-sub').textContent = data.subtitle || '';
+        qs('#t-whats').href = waLink;
+
         const comprarRoot = qs('#comprar-root'); comprarRoot.id = 'comprar'; comprarRoot.style.display = 'block';
+        qs('#t-buy').href = '#comprar';
         qs('#link-com-mensal').href = data.checkout?.com?.mensal || '#';
         qs('#link-com-trimestral').href = data.checkout?.com?.trimestral || '#';
         qs('#link-sem-mensal').href = data.checkout?.sem?.mensal || '#';
         qs('#link-sem-trimestral').href = data.checkout?.sem?.trimestral || '#';
-      } else {
-        buyBtn.href = data.checkoutUrl || '#';
+        return;
       }
 
-      // Copy -> dividir em 3 cards (robusto mesmo se poucos parágrafos)
-      const grid = qs('#copy-grid');
-      const copy = Array.isArray(data.copy) ? data.copy.slice() : [];
-      const cols = 3;
-      const chunks = Array.from({length: cols}, () => []);
-      copy.forEach((par, i) => chunks[i % cols].push(par));
-      chunks.forEach(group => {
-        if (!group.length) return;
-        const card = document.createElement('article');
-        card.className = 'content-card';
-        group.forEach(txt => { const p = document.createElement('p'); p.textContent = txt; card.appendChild(p); });
-        grid.appendChild(card);
+      // ===== Materiais: card único =====
+      const mc = qs('#material-card');
+      mc.hidden = false;
+      qs('#m-title').textContent = data.title;
+      qs('#m-sub').textContent = data.subtitle || '';
+
+      // Copy
+      const copyEl = qs('#m-copy'); copyEl.innerHTML = '';
+      (data.copy || []).forEach(txt => {
+        const p = document.createElement('p');
+        p.textContent = txt; copyEl.appendChild(p);
       });
+
+      // Preço + ações
+      if (data.price) qs('#m-price').textContent = data.price;
+      const buy = qs('#m-buy'), sample = qs('#m-sample'), whats = qs('#m-whats');
+      buy.href = data.checkoutUrl || '#';
+      if (data.sampleUrl){ sample.href = data.sampleUrl; sample.style.display = 'inline-flex'; }
+      whats.href = waLink;
     })();
   </script>
 </body>
