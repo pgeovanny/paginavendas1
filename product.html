@@ -14,7 +14,6 @@
 <body>
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
-  <!-- Header fixo -->
   <header class="site-header" role="banner" aria-label="Cabeçalho">
     <div class="container header-wrap">
       <a class="brand" href="index.html" aria-label="Ir para a página inicial">
@@ -29,12 +28,11 @@
     </div>
   </header>
 
-  <!-- Conteúdo -->
   <main id="conteudo" class="product-page">
     <div class="container product-container" id="product-root" aria-live="polite">
 
-      <!-- Card premium sem imagem -->
-      <section class="product-card-lg" aria-labelledby="prod-title">
+      <!-- Header do produto (card premium) -->
+      <section class="product-header-card" aria-labelledby="prod-title">
         <div class="product-body">
           <div class="back-wrap">
             <a class="btn btn-outline" href="index.html">← Voltar</a>
@@ -42,29 +40,21 @@
 
           <h1 class="product-title" id="prod-title">Carregando…</h1>
           <p class="product-sub" id="prod-sub"></p>
-
           <div class="price-tag" id="prod-price" style="display:none;"></div>
 
-          <article class="copy" aria-label="Descrição detalhada do produto">
-            <div id="prod-copy"></div>
-
-            <div class="note-secure" id="prod-secure">
-              Compra segura: pagamento processado em ambiente externo confiável, com confirmação por e-mail. Suporte por WhatsApp para qualquer dúvida.
-            </div>
-
-            <div class="actions">
-              <a class="btn btn-primary" id="btn-buy" href="#" target="_blank" rel="noopener">Comprar agora</a>
-              <a class="btn btn-outline" id="btn-whats" href="#" target="_blank" rel="noopener">Ainda tem dúvidas? Clique aqui</a>
-            </div>
-          </article>
-
-          <div class="back-wrap">
-            <a class="btn btn-outline" href="index.html">← Voltar</a>
+          <div class="actions">
+            <a class="btn btn-primary" id="btn-buy" href="#" target="_blank" rel="noopener">Comprar agora</a>
+            <a class="btn btn-outline" id="btn-whats" href="#" target="_blank" rel="noopener">Ainda tem dúvidas? Clique aqui</a>
           </div>
         </div>
       </section>
-      <!-- /Card premium -->
 
+      <!-- Copy dividida em 3 cards -->
+      <section class="content-grid" id="copy-grid"></section>
+
+      <div class="back-wrap">
+        <a class="btn btn-outline" href="index.html">← Voltar</a>
+      </div>
     </div>
   </main>
 
@@ -73,7 +63,7 @@
     <img src="assets/whatsapp.svg" width="26" height="26" alt="WhatsApp" />
   </a>
 
-  <!-- Overlay/Stepper para Mentoria (ativado somente para o slug mentoria) -->
+  <!-- Overlay/Stepper para Mentoria (mantido como antes) -->
   <div id="comprar-root" style="display:none;">
     <div class="purchase-overlay" aria-hidden="true"></div>
     <div class="purchase-panel" role="dialog" aria-modal="true" aria-labelledby="dlg-title">
@@ -83,10 +73,8 @@
       </div>
 
       <form class="stepper" onsubmit="return false;">
-        <!-- Etapa 1 -->
         <div class="stage">
           <div class="hint">1) Selecione o tipo</div>
-          <!-- A ordem dos inputs importa para os seletores CSS -->
           <input type="radio" name="tipo" id="opt-com" />
           <input type="radio" name="tipo" id="opt-sem" />
           <div class="options">
@@ -95,7 +83,6 @@
           </div>
         </div>
 
-        <!-- Etapa 2 -->
         <div class="stage">
           <div class="hint">2) Escolha o plano</div>
 
@@ -113,7 +100,6 @@
     </div>
   </div>
 
-  <!-- Rodapé -->
   <footer class="site-footer" role="contentinfo">
     <div class="container footer-wrap">
       <small>© <span id="year"></span> PG Concursos — Dominando o Edital. Todos os direitos reservados.</small>
@@ -126,18 +112,16 @@
   </footer>
 
   <script>
-    // utils
     const qs = (s, el=document) => el.querySelector(s);
     const qsa = (s, el=document) => Array.from(el.querySelectorAll(s));
     const param = (k) => new URLSearchParams(location.search).get(k);
     const enc = encodeURIComponent;
 
-    // ano no rodapé
     qs('#year').textContent = new Date().getFullYear();
 
     function notFound() {
       qs('#product-root').innerHTML = `
-        <section class="product-card-lg">
+        <section class="product-header-card">
           <div class="product-body">
             <h2 class="mt-0">Produto não encontrado</h2>
             <p class="mt-8">Verifique o link. Você pode voltar para a página inicial e escolher novamente.</p>
@@ -157,11 +141,8 @@
       }
 
       const data = window.PRODUCTS[slug];
-
-      // SEO básico
       document.title = `${data.title} – PG Concursos`;
 
-      // Preenche campos
       qs('#prod-title').textContent = data.title;
       qs('#prod-sub').textContent = data.subtitle || '';
 
@@ -169,15 +150,6 @@
         qs('#prod-price').style.display = 'block';
         qs('#prod-price').textContent = data.price;
       }
-
-      // Copy (parágrafos)
-      const copyEl = qs('#prod-copy');
-      copyEl.innerHTML = '';
-      (data.copy || []).forEach(par => {
-        const p = document.createElement('p');
-        p.textContent = par;
-        copyEl.appendChild(p);
-      });
 
       // WhatsApp
       const waNum = data.whatsNumber || '';
@@ -188,34 +160,35 @@
 
       // Comprar
       const buyBtn = qs('#btn-buy');
-
       if (data.type === 'mentoria') {
-        // Abrir overlay com #comprar (CSS :target)
-        buyBtn.removeAttribute('target');
-        buyBtn.removeAttribute('rel');
-        buyBtn.href = '#comprar';
-
-        const comprarRoot = qs('#comprar-root');
-        comprarRoot.id = 'comprar';              // ativa os seletores CSS :target
-        comprarRoot.style.display = 'block';
-
-        // Links de planos
+        buyBtn.removeAttribute('target'); buyBtn.removeAttribute('rel'); buyBtn.href = '#comprar';
+        const comprarRoot = qs('#comprar-root'); comprarRoot.id = 'comprar'; comprarRoot.style.display = 'block';
         qs('#link-com-mensal').href = data.checkout?.com?.mensal || '#';
         qs('#link-com-trimestral').href = data.checkout?.com?.trimestral || '#';
         qs('#link-sem-mensal').href = data.checkout?.sem?.mensal || '#';
         qs('#link-sem-trimestral').href = data.checkout?.sem?.trimestral || '#';
-
-        // Acessibilidade: focar o título do diálogo quando abrir (escuta hashchange)
-        window.addEventListener('hashchange', () => {
-          if (location.hash === '#comprar') {
-            setTimeout(() => qs('#dlg-title')?.focus?.(), 50);
-          }
-        });
-
       } else {
-        // Link direto de checkout
         buyBtn.href = data.checkoutUrl || '#';
       }
+
+      // -------- Copy -> dividir em 3 cards modernos --------
+      const copy = Array.isArray(data.copy) ? data.copy.slice() : [];
+      const grid = qs('#copy-grid');
+      const chunks = [[],[],[]];
+      // distribuição balanceada
+      copy.forEach((par, i) => chunks[i % 3].push(par));
+
+      chunks.forEach(group => {
+        if (!group.length) return;
+        const card = document.createElement('article');
+        card.className = 'content-card';
+        group.forEach(txt => {
+          const p = document.createElement('p');
+          p.textContent = txt;
+          card.appendChild(p);
+        });
+        grid.appendChild(card);
+      });
     });
   </script>
 </body>
