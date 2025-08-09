@@ -1,193 +1,79 @@
-<!doctype html>
-<html lang="pt-BR">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Produto – PG Concursos</title>
-  <meta name="description" content="Página do produto — PG Concursos – Dominando o Edital." />
-  <meta name="theme-color" content="#0e1f4b" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+/* ==========================================================
+   PG Concursos – Dominando o Edital
+   products.js
+   ========================================================== */
+(function () {
+  const WHATS_NUMBER = "5599999999999"; // edite aqui (DDI+DDD+número, só dígitos)
 
-  <header class="site-header" role="banner">
-    <div class="container header-wrap">
-      <a class="brand" href="index.html"><span class="brand-line brand-pg">PG Concursos</span><span class="brand-x" aria-hidden="true">×</span><span class="brand-line brand-de">Dominando o Edital</span></a>
-      <nav class="nav" aria-label="Principal">
-        <a class="nav-link" href="index.html#produtos">Produtos</a>
-        <a class="nav-link cta-small" href="index.html#produtos">Começar</a>
-      </nav>
-    </div>
-  </header>
+  window.PRODUCTS = {
+    manual: {
+      slug: "manual",
+      type: "pdf",
+      title: "Manual do Aprovado",
+      subtitle: "“O passo a passo definitivo para aprender a estudar do jeito certo e passar mais rápido.”",
+      price: "R$ 97,00",
+      checkoutUrl: "https://checkout.exemplo.com/manual",
+      whatsNumber: WHATS_NUMBER,
+      whatsMessage: "Tenho dúvidas sobre o Manual do Aprovado",
+      sampleUrl: "https://exemplo.com/amostra-manual.pdf", // opcional
+      copy: [
+        "Você já gastou horas, dias e até anos estudando para concursos, mas sente que não sai do lugar? Que parece estar sempre perdido, sem saber se o que está fazendo realmente funciona? A verdade é que a maioria dos concurseiros começa errado, pulando de método em método, estudando sem organização e perdendo tempo com coisas que não trazem resultado.",
+        "O Manual do Aprovado foi criado justamente para mudar essa realidade — por quem já passou por tudo isso e aprendeu na prática o que funciona de verdade para passar em concursos.",
+        "Aqui você vai receber um passo a passo claro, prático e testado, que mostra exatamente o que fazer desde o primeiro dia de estudo até a aprovação.",
+        "Você vai aprender a organizar seus estudos do jeito certo, com estratégias que aceleram o aprendizado e fazem você fixar o conteúdo com eficiência. Vai saber como revisar para não esquecer, como resolver questões para ganhar experiência e montar ciclos de estudo que otimizam seu tempo.",
+        "Esse manual é para quem quer parar de perder tempo fazendo errado e finalmente ir direto ao que gera resultado. É para quem quer estudar com foco, segurança e saber que está no caminho certo.",
+        "Ele foi feito por aprovados que passaram anos estudando errado, aprendendo na marra o que funciona e o que não funciona — e agora compartilham esse conhecimento com você, para que você não precise errar tanto quanto eles.",
+        "Se você quer sair do lugar, eliminar a dúvida e acelerar sua aprovação, este manual em PDF é seu guia definitivo. Estude menos, estude melhor e conquiste sua vaga mais rápido!"
+      ]
+    },
 
-  <main id="conteudo" class="product-page">
-    <div class="container product-container" id="product-root" aria-live="polite">
+    legislacao: {
+      slug: "legislacao",
+      type: "pdf",
+      title: "Legislação Interna TJ-SP 2025",
+      subtitle: "“Simplifique o estudo da legislação com um conteúdo direto, tabelado e com questões inéditas”",
+      price: "R$ 127,00",
+      checkoutUrl: "https://checkout.exemplo.com/legislacao",
+      whatsNumber: WHATS_NUMBER,
+      whatsMessage: "Tenho dúvidas sobre o material de Legislação Interna TJ-SP 2025",
+      sampleUrl: "https://exemplo.com/amostra-legislacao.pdf", // opcional
+      copy: [
+        "Se preparar para o concurso do Tribunal de Justiça de São Paulo exige muito mais do que decorar a lei seca: é preciso conhecer profundamente a legislação interna, os prazos, as competências e os detalhes que caem com frequência nas provas.",
+        "Pensando nisso, desenvolvemos o material Legislação Interna TJ-SP 2025, em formato PDF, organizado e visualmente acessível que reúne toda a legislação cobrada no edital de forma didática e prática.",
+        "Aqui, você não vai perder tempo vasculhando textos longos e difíceis de entender: preparamos tabelas explicativas que destacam exatamente o que você precisa saber — prazos, quóruns, composições e competências — tudo organizado para facilitar seu aprendizado e memorização.",
+        "Além disso, incluímos questões inéditas que foram cuidadosamente selecionadas para testar seu conhecimento e garantir que você esteja preparado para os tipos de perguntas que vão aparecer na prova.",
+        "Este material é essencial para você que quer acertar o máximo em Legislação. Estude com foco, domine o que realmente cai na prova e aumente suas chances de aprovação."
+      ]
+    },
 
-      <!-- Header do produto -->
-      <section class="product-header-card" aria-labelledby="prod-title">
-        <div class="product-body">
-          <div class="back-wrap"><a class="btn btn-outline" href="index.html">← Voltar</a></div>
-
-          <h1 class="product-title" id="prod-title">Carregando…</h1>
-          <p class="product-sub" id="prod-sub"></p>
-          <div class="price-tag" id="prod-price" style="display:none;"></div>
-
-          <div class="actions">
-            <a class="btn btn-primary" id="btn-buy" href="#" target="_blank" rel="noopener">Comprar agora</a>
-            <a class="btn btn-outline" id="btn-sample" href="#" target="_blank" rel="noopener" style="display:none;">Ver amostra</a>
-            <a class="btn btn-outline" id="btn-whats" href="#" target="_blank" rel="noopener">Ainda tem dúvidas? Clique aqui</a>
-          </div>
-        </div>
-      </section>
-
-      <!-- Copy em 3 cards -->
-      <section class="content-grid" id="copy-grid"></section>
-
-      <div class="back-wrap"><a class="btn btn-outline" href="index.html">← Voltar</a></div>
-    </div>
-  </main>
-
-  <!-- WhatsApp flutuante -->
-  <a class="fab-whatsapp" id="fab-whats" href="#" target="_blank" rel="noopener" aria-label="Abrir WhatsApp">
-    <img src="assets/whatsapp.svg" width="26" height="26" alt="WhatsApp" />
-  </a>
-
-  <!-- Mentoria (mantido) -->
-  <div id="comprar-root" style="display:none;">
-    <div class="purchase-overlay" aria-hidden="true"></div>
-    <div class="purchase-panel" role="dialog" aria-modal="true" aria-labelledby="dlg-title">
-      <div class="purchase-head">
-        <h3 class="purchase-title" id="dlg-title">Escolha sua mentoria</h3>
-        <a class="close-x" href="#" aria-label="Fechar">✕</a>
-      </div>
-      <form class="stepper" onsubmit="return false;">
-        <div class="stage">
-          <div class="hint">1) Selecione o tipo</div>
-          <input type="radio" name="tipo" id="opt-com" />
-          <input type="radio" name="tipo" id="opt-sem" />
-          <div class="options">
-            <label for="opt-com">Mentoria com material</label>
-            <label for="opt-sem">Mentoria sem material</label>
-          </div>
-        </div>
-        <div class="stage">
-          <div class="hint">2) Escolha o plano</div>
-          <div class="plans-com">
-            <a id="link-com-mensal" class="plan-link" href="#" target="_blank" rel="noopener">Plano mensal</a>
-            <a id="link-com-trimestral" class="plan-link" href="#" target="_blank" rel="noopener">Plano trimestral</a>
-          </div>
-          <div class="plans-sem">
-            <a id="link-sem-mensal" class="plan-link" href="#" target="_blank" rel="noopener">Plano mensal</a>
-            <a id="link-sem-trimestral" class="plan-link" href="#" target="_blank" rel="noopener">Plano trimestral</a>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <footer class="site-footer" role="contentinfo">
-    <div class="container footer-wrap">
-      <small>© <span id="year"></span> PG Concursos — Dominando o Edital. Todos os direitos reservados.</small>
-      <div class="footer-links"><a href="#">Termos</a><span class="sep">•</span><a href="#">Privacidade</a></div>
-    </div>
-  </footer>
-
-  <!-- 1) Catálogo sempre carrega antes do script -->
-  <script src="products.js"></script>
-  <!-- 2) Script da página -->
-  <script>
-    const qs = (s, el=document) => el.querySelector(s);
-    const param = (k) => new URLSearchParams(location.search).get(k);
-    const enc = encodeURIComponent;
-    qs('#year').textContent = new Date().getFullYear();
-
-    // Normaliza slugs e mapeia aliases
-    function normalize(s){
-      return (s||'').toString()
-        .normalize('NFD').replace(/[\u0300-\u036f]/g,'')   // remove acentos
-        .toLowerCase().replace(/[^a-z0-9]+/g,'-')         // troca por hífen
-        .replace(/(^-|-$)/g,'');
+    mentoria: {
+      slug: "mentoria",
+      type: "mentoria",
+      title: "Mentoria",
+      subtitle: "“Mentoria personalizada para planejar e acelerar sua aprovação.”",
+      price: "",
+      checkout: {
+        com: {
+          mensal: "https://checkout.exemplo.com/mentoria-com-material-mensal",
+          trimestral: "https://checkout.exemplo.com/mentoria-com-material-trimestral"
+        },
+        sem: {
+          mensal: "https://checkout.exemplo.com/mentoria-sem-material-mensal",
+          trimestral: "https://checkout.exemplo.com/mentoria-sem-material-trimestral"
+        }
+      },
+      whatsNumber: WHATS_NUMBER,
+      whatsMessage: "Tenho dúvidas sobre a Mentoria",
+      copy: [
+        "Conseguir a aprovação em concursos públicos é um desafio que exige muito mais do que vontade: é preciso planejamento estratégico, organização, disciplina e acompanhamento correto — e é exatamente isso que nossa Mentoria oferece.",
+        "Na Mentoria, você recebe um plano de estudos totalmente individualizado, elaborado especificamente para o seu perfil, considerando seu tempo disponível, o concurso que você pretende prestar, seu nível atual em cada matéria e o peso das disciplinas no edital.",
+        "O plano é acessado por uma plataforma, onde suas metas diárias são divididas em teoria, revisão e resolução de questões.",
+        "Mas não para por aí: você terá suporte direto e pessoal comigo, seu mentor, via WhatsApp. Pode tirar dúvidas, pedir orientações e receber feedback sempre que precisar, 7 dias por semana.",
+        "Oferecemos a mentoria com duas opções: com material completo do Estratégia Concursos ou apenas o plano e o acompanhamento, para quem já possui material próprio.",
+        "Além disso, fazemos uma reunião inicial para entender suas necessidades, dificuldades e objetivos, garantindo que seu plano seja realmente personalizado e adequado à sua realidade.",
+        "Se você quer deixar de estudar sem rumo, perder tempo com métodos que não funcionam ou sentir que está sozinho nessa caminhada, a Mentoria é sua solução.",
+        "Esta é a oportunidade de estudar com quem entende do assunto, que vai acompanhar seu progresso e garantir que você esteja sempre no caminho certo rumo à aprovação."
+      ]
     }
-    function resolveSlug(raw){
-      const n = normalize(raw);
-      const alias = {
-        'manual':'manual','manual-do-aprovado':'manual',
-        'legislacao':'legislacao','legislacao-interna':'legislacao','legislacao-interna-tj-sp-2025':'legislacao',
-        'mentoria':'mentoria'
-      };
-      return alias[n] || n;
-    }
-
-    function notFound() {
-      qs('#product-root').innerHTML = `
-        <section class="product-header-card">
-          <div class="product-body">
-            <h2 class="mt-0">Produto não encontrado</h2>
-            <p class="mt-8">Verifique o link. Você pode voltar para a página inicial e escolher novamente.</p>
-            <div class="actions"><a class="btn btn-primary" href="index.html">Voltar para a Home</a></div>
-          </div>
-        </section>`;
-      const fab = qs('#fab-whats'); if (fab) fab.style.display = 'none';
-      document.title = 'Produto não encontrado – PG Concursos';
-    }
-
-    (function init(){
-      const raw = param('p');
-      if (!raw || typeof window.PRODUCTS !== 'object') { notFound(); return; }
-      const key = resolveSlug(raw);
-      const data = window.PRODUCTS[key];
-      if (!data) { notFound(); return; }
-
-      // SEO
-      document.title = `${data.title} – PG Concursos`;
-
-      // Header
-      qs('#prod-title').textContent = data.title;
-      qs('#prod-sub').textContent = data.subtitle || '';
-      if (data.price) { qs('#prod-price').style.display = 'block'; qs('#prod-price').textContent = data.price; }
-
-      // Links/CTAs
-      const buyBtn = qs('#btn-buy');
-      const sampleBtn = qs('#btn-sample');
-
-      // WhatsApp
-      const waNum = data.whatsNumber || '';
-      const waMsg = data.whatsMessage || `Tenho dúvidas sobre ${data.title}`;
-      const waLink = waNum ? `https://wa.me/${waNum}?text=${enc(waMsg)}` : '#';
-      qs('#btn-whats').href = waLink; qs('#fab-whats').href = waLink;
-
-      // Amostra (opcional)
-      if (data.sampleUrl) { sampleBtn.href = data.sampleUrl; sampleBtn.style.display = 'inline-flex'; }
-
-      // Comprar
-      if (data.type === 'mentoria') {
-        buyBtn.removeAttribute('target'); buyBtn.removeAttribute('rel'); buyBtn.href = '#comprar';
-        const comprarRoot = qs('#comprar-root'); comprarRoot.id = 'comprar'; comprarRoot.style.display = 'block';
-        qs('#link-com-mensal').href = data.checkout?.com?.mensal || '#';
-        qs('#link-com-trimestral').href = data.checkout?.com?.trimestral || '#';
-        qs('#link-sem-mensal').href = data.checkout?.sem?.mensal || '#';
-        qs('#link-sem-trimestral').href = data.checkout?.sem?.trimestral || '#';
-      } else {
-        buyBtn.href = data.checkoutUrl || '#';
-      }
-
-      // Copy -> dividir em 3 cards (robusto mesmo se poucos parágrafos)
-      const grid = qs('#copy-grid');
-      const copy = Array.isArray(data.copy) ? data.copy.slice() : [];
-      const cols = 3;
-      const chunks = Array.from({length: cols}, () => []);
-      copy.forEach((par, i) => chunks[i % cols].push(par));
-      chunks.forEach(group => {
-        if (!group.length) return;
-        const card = document.createElement('article');
-        card.className = 'content-card';
-        group.forEach(txt => { const p = document.createElement('p'); p.textContent = txt; card.appendChild(p); });
-        grid.appendChild(card);
-      });
-    })();
-  </script>
-</body>
-</html>
+  };
+})();
