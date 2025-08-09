@@ -4,7 +4,7 @@ const whatsappConfig = {
   mensagem: "Olá! Tenho interesse em saber mais sobre os produtos da PG Concursos."
 };
 
-// ---------------- DADOS DOS PRODUTOS ----------------
+// ---------------- DADOS ----------------
 const productsData = {
   manual: {
     slug: "manual",
@@ -12,11 +12,13 @@ const productsData = {
     subtitulo: "O passo a passo definitivo para aprender a estudar do jeito certo e passar mais rápido.",
     imagem: "./assets/manual-placeholder.jpg",
     preco: "R$ 97,00",
+    sampleUrl: "", // coloque um link de amostra (PDF) se quiser exibir o botão "Ver amostra"
     copy: `
       Você já gastou horas, dias e até anos estudando para concursos, mas sente que não sai do lugar?
       Que parece estar sempre perdido, sem saber se o que está fazendo realmente funciona?<br><br>
-      O Manual do Aprovado foi criado para mudar essa realidade com um passo a passo claro e testado, do primeiro dia até a aprovação.
-      Organize seus estudos, revise com eficiência e resolva questões do jeito certo. Estude menos, estude melhor e passe mais rápido!
+      O Manual do Aprovado foi criado para mudar essa realidade — por quem já passou por isso e testou o que funciona.
+      Você vai aprender a organizar os estudos, revisar sem esquecer e resolver questões para ganhar experiência real.<br><br>
+      Pare de perder tempo fazendo errado. Estude com foco, segurança e acelere sua aprovação.
     `,
     checkout: "https://link-do-checkout-manual.com"
   },
@@ -25,10 +27,12 @@ const productsData = {
     titulo: "Legislação Interna TJ-SP 2025",
     subtitulo: "Simplifique o estudo da legislação com um conteúdo direto, tabelado e com questões inéditas.",
     imagem: "./assets/legislacao-placeholder.jpg",
-    preco: "R$ 67,00",
+    preco: "R$ 79,00",
+    sampleUrl: "", // opcional
     copy: `
-      Estude a legislação interna do TJ-SP de forma didática: prazos, competências, quóruns e composições em tabelas claras — além de questões inéditas para treinar.
-      Material em PDF, visualmente organizado e direto ao ponto para você acertar mais na prova.
+      Se preparar para o concurso do TJ-SP exige mais do que decorar lei seca: é preciso dominar prazos, competências e detalhes que caem com frequência.<br><br>
+      Este PDF reúne toda a legislação cobrada no edital com didática: tabelas claras (prazos, quóruns, composições e competências) e questões inéditas para treinar.<br><br>
+      Estude com foco no que realmente cai e aumente suas chances de aprovação.
     `,
     checkout: "https://link-do-checkout-legislacao.com"
   },
@@ -39,8 +43,8 @@ const productsData = {
     imagem: "./assets/mentoria-placeholder.jpg",
     preco: "",
     copy: `
-      A Mentoria oferece planejamento estratégico individualizado, metas diárias (teoria, revisão e questões) e suporte direto 7 dias/semana pelo WhatsApp.
-      Opções com material completo ou apenas acompanhamento, com planos mensal e trimestral.
+      A Mentoria oferece um plano de estudos individualizado (tempo, edital, nível por matéria), metas diárias separadas em teoria, revisão e questões, e acompanhamento direto 7 dias por semana via WhatsApp.<br><br>
+      Temos duas modalidades: com material completo (Estratégia) ou apenas o plano + acompanhamento — em planos mensal e trimestral.
     `,
     opcoes: {
       comMaterial: {
@@ -74,29 +78,32 @@ function loadProductPage() {
   document.getElementById("product-title").textContent = product.titulo;
   document.getElementById("product-subtitle").textContent = product.subtitulo;
   document.getElementById("product-image").src = product.imagem;
-  document.getElementById("product-copy").innerHTML = product.copy;
+  document.getElementById("product-copy").innerHTML = normalizeCopy(product.copy);
 
-  const precoEl = document.getElementById("product-price");
-  if (product.preco) {
-    precoEl.textContent = `Preço: ${product.preco}`;
-    precoEl.style.display = "inline-flex";
-  } else {
-    precoEl.style.display = "none";
-  }
+  // preço
+  const priceEl = document.getElementById("product-price");
+  if (product.preco) { priceEl.textContent = `Preço: ${product.preco}`; priceEl.style.display = "inline-flex"; }
+  else { priceEl.style.display = "none"; }
 
+  // badge
+  const badge = document.getElementById("product-badge");
+  if (badge) badge.style.display = "inline-flex";
+
+  // botões
   const buyBtn = document.getElementById("buy-button");
+  const sampleBtn = document.getElementById("sample-button");
   const optionsContainer = document.getElementById("mentoria-options");
   const plansContainer = document.getElementById("mentoria-plans");
 
   if (product.slug === "mentoria") {
-    // botão abre opções
+    // fluxo especial
     buyBtn.addEventListener("click", function (e) {
       e.preventDefault();
       optionsContainer.style.display = "flex";
       buyBtn.style.display = "none";
+      if (sampleBtn) sampleBtn.style.display = "none";
     });
 
-    // handlers
     document.getElementById("with-material").addEventListener("click", () => {
       plansContainer.innerHTML = `
         <a href="${product.opcoes.comMaterial.mensal}" target="_blank" rel="noopener">Plano mensal</a>
@@ -112,9 +119,11 @@ function loadProductPage() {
     });
   } else {
     // produtos normais
-    buyBtn.href = product.checkout;
-    buyBtn.target = "_blank";
-    buyBtn.rel = "noopener";
+    buyBtn.href = product.checkout; buyBtn.target = "_blank"; buyBtn.rel = "noopener";
+    if (product.sampleUrl) {
+      sampleBtn.href = product.sampleUrl;
+      sampleBtn.style.display = "inline-flex";
+    }
   }
 
   // WhatsApp flutuante
@@ -125,7 +134,15 @@ function loadProductPage() {
   }
 }
 
-// inicialização somente na página de produto
+// normaliza copy para <p> quando vier com quebras
+function normalizeCopy(html) {
+  // troca quebras duplas por parágrafos, mantendo <br> existentes
+  const parts = html.split(/<br\s*\/?>\s*<br\s*\/?>/i).map(s => s.trim()).filter(Boolean);
+  if (parts.length <= 1) return `<p>${html}</p>`;
+  return parts.map(p => `<p>${p}</p>`).join("");
+}
+
+// init
 if (typeof window !== "undefined" && window.location.pathname.includes("product.html")) {
   document.addEventListener("DOMContentLoaded", loadProductPage);
 }
