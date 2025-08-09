@@ -1,0 +1,242 @@
+/* ---------- Reset ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #0b1b44;
+  color: #fff;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Containers ---------- */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ---------- Header fixo ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: linear-gradient(90deg, #07112c, #0e1f4b, #142a66);
+  padding: 1rem 0;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.brand-divider {
+  color: #cfe0ff;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  padding: 4rem 0 3rem;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #07112c, #0e1f4b, #142a66);
+  z-index: -2;
+}
+
+.hero-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.hero-subtitle {
+  color: #cfe0ff;
+  font-size: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.glow-hero {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(32,68,137,0.4), transparent 70%);
+  filter: blur(60px);
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+
+/* ---------- Seção produtos ---------- */
+.sec-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.produtos-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* ---------- Filtro ---------- */
+.filter {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.filter-btn {
+  background: #204489;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  font-size: 0.95rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+.filter-btn:hover {
+  background: #18356f;
+}
+
+.filter-btn.is-active {
+  background: #18356f;
+  box-shadow: 0 0 10px rgba(32,68,137,0.8);
+}
+
+/* ---------- Lista de produtos ---------- */
+.produtos-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.produtos-grid.is-hidden {
+  display: none;
+}
+
+.product-btn {
+  position: relative;
+  display: block;
+  background: #0e1f4b;
+  border-radius: 10px;
+  padding: 1.2rem;
+  color: #fff;
+  text-decoration: none;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.product-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+
+.product-btn-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(32,68,137,0.4), rgba(20,42,102,0.6));
+  z-index: 0;
+}
+
+.product-btn-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.product-icon {
+  font-size: 2rem;
+}
+
+.product-title {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.product-sub {
+  font-size: 0.85rem;
+  color: #cfe0ff;
+}
+
+/* ---------- Rodapé ---------- */
+.site-footer {
+  margin-top: auto;
+  background: #07112c;
+  padding: 1rem 0;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.muted {
+  color: #cfe0ff;
+  font-size: 0.85rem;
+}
+
+.footer-link .icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* ---------- Acessibilidade e utilidades ---------- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+:focus {
+  outline: 2px solid #cfe0ff;
+  outline-offset: 2px;
+}
+
+@media (min-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+}
