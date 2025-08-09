@@ -33,18 +33,22 @@
       <div class="container">
         <h1 id="hero-title" class="hero-title"><span class="spark">Você está mais próximo da sua aprovação.</span></h1>
 
+        <!-- Filtro em card premium -->
         <div class="filter-wrap" id="produtos">
-          <div class="filter-label">Escolha seu produto:</div>
+          <div class="filter-card">
+            <div class="filter-label">Escolha seu produto:</div>
 
-          <div class="filter-switch" role="tablist" aria-label="Filtro de produtos">
-            <div class="seg-indicator" aria-hidden="true"></div>
-            <!-- começa sem seleção -->
-            <button class="seg-pill" role="tab" id="tab-materiais" aria-selected="false">Materiais</button>
-            <button class="seg-pill" role="tab" id="tab-mentoria" aria-selected="false">Mentoria</button>
+            <div class="filter-switch" role="tablist" aria-label="Filtro de produtos">
+              <div class="seg-indicator" aria-hidden="true"></div>
+              <!-- começa sem seleção -->
+              <button class="seg-pill" role="tab" id="tab-materiais" aria-selected="false">Materiais</button>
+              <button class="seg-pill" role="tab" id="tab-mentoria" aria-selected="false">Mentoria</button>
+            </div>
+
+            <p class="filter-note" id="filter-note">Selecione uma categoria para ver as opções disponíveis.</p>
           </div>
 
-          <p class="filter-note" id="filter-note">Selecione uma categoria para ver as opções disponíveis.</p>
-
+          <!-- Grid de cards -->
           <div class="product-grid" aria-live="polite">
             <a class="product-card is-hidden" data-cat="materiais" href="product.html?p=manual" aria-label="Manual do Aprovado">
               <div class="shine"></div><div class="pc-badge">PDF</div>
