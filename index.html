@@ -3,178 +3,125 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Produto – PG Concursos</title>
-  <meta name="description" content="Página do produto — PG Concursos – Dominando o Edital." />
+  <title>PG Concursos – Dominando o Edital</title>
+  <meta name="description" content="PG Concursos – Dominando o Edital. Materiais e mentoria para você acelerar sua aprovação." />
   <meta name="theme-color" content="#0e1f4b" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
-  <script src="products.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
-  <header class="site-header" role="banner" aria-label="Cabeçalho">
+  <header class="site-header" role="banner">
     <div class="container header-wrap">
-      <a class="brand" href="index.html" aria-label="Ir para a página inicial">
+      <a class="brand" href="index.html">
         <span class="brand-line brand-pg">PG Concursos</span>
         <span class="brand-x" aria-hidden="true">×</span>
         <span class="brand-line brand-de">Dominando o Edital</span>
       </a>
       <nav class="nav" aria-label="Principal">
-        <a class="nav-link" href="index.html#produtos">Produtos</a>
-        <a class="nav-link cta-small" href="index.html#produtos">Começar</a>
+        <a class="nav-link" href="#produtos">Produtos</a>
+        <a class="nav-link cta-small" href="#produtos">Começar</a>
       </nav>
     </div>
   </header>
 
-  <main id="conteudo" class="product-page">
-    <div class="container product-container" id="product-root" aria-live="polite">
+  <main id="conteudo">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-bg"></div>
+      <div class="container">
+        <h1 id="hero-title" class="hero-title"><span class="spark">Você está mais próximo da sua aprovação.</span></h1>
 
-      <!-- Header do produto -->
-      <section class="product-header-card" aria-labelledby="prod-title">
-        <div class="product-body">
-          <div class="back-wrap"><a class="btn btn-outline" href="index.html">← Voltar</a></div>
+        <div class="filter-wrap" id="produtos">
+          <div class="filter-label">Escolha seu produto:</div>
 
-          <h1 class="product-title" id="prod-title">Carregando…</h1>
-          <p class="product-sub" id="prod-sub"></p>
-          <div class="price-tag" id="prod-price" style="display:none;"></div>
+          <div class="filter-switch" role="tablist" aria-label="Filtro de produtos">
+            <div class="seg-indicator" aria-hidden="true"></div>
+            <!-- começa sem seleção -->
+            <button class="seg-pill" role="tab" id="tab-materiais" aria-selected="false">Materiais</button>
+            <button class="seg-pill" role="tab" id="tab-mentoria" aria-selected="false">Mentoria</button>
+          </div>
 
-          <div class="actions">
-            <a class="btn btn-primary" id="btn-buy" href="#" target="_blank" rel="noopener">Comprar agora</a>
-            <a class="btn btn-outline" id="btn-sample" href="#" target="_blank" rel="noopener" style="display:none;">Ver amostra</a>
-            <a class="btn btn-outline" id="btn-whats" href="#" target="_blank" rel="noopener">Ainda tem dúvidas? Clique aqui</a>
+          <p class="filter-note" id="filter-note">Selecione uma categoria para ver as opções disponíveis.</p>
+
+          <div class="product-grid" aria-live="polite">
+            <a class="product-card is-hidden" data-cat="materiais" href="product.html?p=manual" aria-label="Manual do Aprovado">
+              <div class="shine"></div><div class="pc-badge">PDF</div>
+              <h3 class="pc-title">Manual do Aprovado</h3>
+              <p class="pc-sub">O passo a passo definitivo para estudar certo e passar mais rápido.</p>
+              <span class="pc-cta">Ver detalhes</span>
+            </a>
+
+            <a class="product-card is-hidden" data-cat="materiais" href="product.html?p=legislacao" aria-label="Legislação Interna TJ-SP 2025">
+              <div class="shine"></div><div class="pc-badge">PDF</div>
+              <h3 class="pc-title">Legislação Interna TJ-SP 2025</h3>
+              <p class="pc-sub">Conteúdo direto, tabelado e com questões inéditas.</p>
+              <span class="pc-cta">Ver detalhes</span>
+            </a>
+
+            <a class="product-card is-hidden" data-cat="mentoria" href="product.html?p=mentoria" aria-label="Mentoria">
+              <div class="shine"></div><div class="pc-badge">Mentoria</div>
+              <h3 class="pc-title">Mentoria</h3>
+              <p class="pc-sub">Plano personalizado para acelerar sua aprovação.</p>
+              <span class="pc-cta">Ver detalhes</span>
+            </a>
           </div>
         </div>
-      </section>
-
-      <!-- Copy dividida em 3 cards -->
-      <section class="content-grid" id="copy-grid"></section>
-
-      <div class="back-wrap"><a class="btn btn-outline" href="index.html">← Voltar</a></div>
-    </div>
-  </main>
-
-  <!-- WhatsApp flutuante -->
-  <a class="fab-whatsapp" id="fab-whats" href="#" target="_blank" rel="noopener" aria-label="Abrir WhatsApp">
-    <img src="assets/whatsapp.svg" width="26" height="26" alt="WhatsApp" />
-  </a>
-
-  <!-- Mentoria (mantido) -->
-  <div id="comprar-root" style="display:none;">
-    <div class="purchase-overlay" aria-hidden="true"></div>
-    <div class="purchase-panel" role="dialog" aria-modal="true" aria-labelledby="dlg-title">
-      <div class="purchase-head">
-        <h3 class="purchase-title" id="dlg-title">Escolha sua mentoria</h3>
-        <a class="close-x" href="#" aria-label="Fechar">✕</a>
       </div>
-
-      <form class="stepper" onsubmit="return false;">
-        <div class="stage">
-          <div class="hint">1) Selecione o tipo</div>
-          <input type="radio" name="tipo" id="opt-com" />
-          <input type="radio" name="tipo" id="opt-sem" />
-          <div class="options">
-            <label for="opt-com">Mentoria com material</label>
-            <label for="opt-sem">Mentoria sem material</label>
-          </div>
-        </div>
-
-        <div class="stage">
-          <div class="hint">2) Escolha o plano</div>
-          <div class="plans-com">
-            <a id="link-com-mensal" class="plan-link" href="#" target="_blank" rel="noopener">Plano mensal</a>
-            <a id="link-com-trimestral" class="plan-link" href="#" target="_blank" rel="noopener">Plano trimestral</a>
-          </div>
-          <div class="plans-sem">
-            <a id="link-sem-mensal" class="plan-link" href="#" target="_blank" rel="noopener">Plano mensal</a>
-            <a id="link-sem-trimestral" class="plan-link" href="#" target="_blank" rel="noopener">Plano trimestral</a>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
+    </section>
+  </main>
 
   <footer class="site-footer" role="contentinfo">
     <div class="container footer-wrap">
       <small>© <span id="year"></span> PG Concursos — Dominando o Edital. Todos os direitos reservados.</small>
-      <div class="footer-links">
-        <a href="#">Termos</a><span class="sep">•</span><a href="#">Privacidade</a>
-      </div>
+      <div class="footer-links"><a href="#">Termos</a><span class="sep">•</span><a href="#">Privacidade</a></div>
     </div>
   </footer>
 
   <script>
-    const qs = (s, el=document) => el.querySelector(s);
-    const param = (k) => new URLSearchParams(location.search).get(k);
-    const enc = encodeURIComponent;
-    qs('#year').textContent = new Date().getFullYear();
+    const $ = (s, el=document) => el.querySelector(s);
+    const $$ = (s, el=document) => Array.from(el.querySelectorAll(s));
+    $('#year').textContent = new Date().getFullYear();
 
-    function notFound() {
-      qs('#product-root').innerHTML = `
-        <section class="product-header-card">
-          <div class="product-body">
-            <h2 class="mt-0">Produto não encontrado</h2>
-            <p class="mt-8">Verifique o link. Você pode voltar para a página inicial e escolher novamente.</p>
-            <div class="actions"><a class="btn btn-primary" href="index.html">Voltar para a Home</a></div>
-          </div>
-        </section>`;
-      qs('#fab-whats').style.display = 'none';
-      document.title = 'Produto não encontrado – PG Concursos';
-    }
+    (function setupFilter(){
+      const switchEl = $('.filter-switch');
+      const indicator = $('.seg-indicator', switchEl);
+      const tabMateriais = $('#tab-materiais');
+      const tabMentoria = $('#tab-mentoria');
+      const tabs = [tabMateriais, tabMentoria];
+      const cards = $$('.product-grid .product-card');
+      const note = $('#filter-note');
+      let active = null;
 
-    document.addEventListener('DOMContentLoaded', () => {
-      const slug = (param('p') || '').toLowerCase();
-      if (!window.PRODUCTS || !slug || !window.PRODUCTS[slug]) { notFound(); return; }
-      const data = window.PRODUCTS[slug];
-
-      // SEO
-      document.title = `${data.title} – PG Concursos`;
-
-      // Header
-      qs('#prod-title').textContent = data.title;
-      qs('#prod-sub').textContent = data.subtitle || '';
-      if (data.price) { qs('#prod-price').style.display = 'block'; qs('#prod-price').textContent = data.price; }
-
-      // Ações
-      const buyBtn = qs('#btn-buy');
-      const sampleBtn = qs('#btn-sample');
-
-      // WhatsApp
-      const waNum = data.whatsNumber || '';
-      const waMsg = data.whatsMessage || `Tenho dúvidas sobre ${data.title}`;
-      const waLink = waNum ? `https://wa.me/${waNum}?text=${enc(waMsg)}` : '#';
-      qs('#btn-whats').href = waLink;
-      qs('#fab-whats').href = waLink;
-
-      // Sample (opcional)
-      if (data.sampleUrl) { sampleBtn.href = data.sampleUrl; sampleBtn.style.display = 'inline-flex'; }
-
-      // Comprar
-      if (data.type === 'mentoria') {
-        buyBtn.removeAttribute('target'); buyBtn.removeAttribute('rel'); buyBtn.href = '#comprar';
-        const comprarRoot = qs('#comprar-root'); comprarRoot.id = 'comprar'; comprarRoot.style.display = 'block';
-        qs('#link-com-mensal').href = data.checkout?.com?.mensal || '#';
-        qs('#link-com-trimestral').href = data.checkout?.com?.trimestral || '#';
-        qs('#link-sem-mensal').href = data.checkout?.sem?.mensal || '#';
-        qs('#link-sem-trimestral').href = data.checkout?.sem?.trimestral || '#';
-      } else {
-        buyBtn.href = data.checkoutUrl || '#';
+      function positionIndicator(btn){
+        indicator.style.opacity = '1';
+        indicator.style.left = btn.offsetLeft + 'px';
+        indicator.style.width = btn.offsetWidth + 'px';
+      }
+      function showCategory(cat){ cards.forEach(c => c.classList.toggle('is-hidden', c.dataset.cat !== cat)); }
+      function selectTab(btn){
+        tabs.forEach(t => t.setAttribute('aria-selected', t === btn ? 'true' : 'false'));
+        active = btn; positionIndicator(btn);
+        showCategory(btn === tabMentoria ? 'mentoria' : 'materiais');
+        if (note) note.style.display = 'none';
       }
 
-      // Copy -> 3 cards
-      const grid = qs('#copy-grid');
-      const copy = Array.isArray(data.copy) ? data.copy.slice() : [];
-      const chunks = [[],[],[]];
-      copy.forEach((par, i) => chunks[i % 3].push(par));
-      chunks.forEach(group => {
-        if (!group.length) return;
-        const card = document.createElement('article');
-        card.className = 'content-card';
-        group.forEach(txt => { const p = document.createElement('p'); p.textContent = txt; card.appendChild(p); });
-        grid.appendChild(card);
+      tabs.forEach(btn => {
+        btn.addEventListener('click', () => selectTab(btn));
+        btn.addEventListener('keydown', (e) => {
+          const idx = tabs.indexOf(document.activeElement);
+          if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+            e.preventDefault();
+            const next = e.key === 'ArrowRight' ? tabs[(idx + 1) % tabs.length] : tabs[(idx - 1 + tabs.length) % tabs.length];
+            next.focus(); selectTab(next);
+          }
+        });
       });
-    });
+
+      window.addEventListener('resize', () => active && positionIndicator(active));
+      // inicial: sem seleção (cards ocultos)
+    })();
   </script>
 </body>
 </html>
