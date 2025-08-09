@@ -24,61 +24,61 @@
       </a>
       <nav class="nav" aria-label="Principal">
         <a class="nav-link" href="index.html#produtos">Produtos</a>
-        <a class="nav-link" href="index.html#sobre">Sobre</a>
         <a class="nav-link cta-small" href="index.html#produtos">Começar</a>
       </nav>
     </div>
   </header>
 
+  <!-- Conteúdo -->
   <main id="conteudo" class="product-page">
-    <div class="container product-wrap" id="product-root" aria-live="polite">
-      <!-- Coluna imagem -->
-      <div>
-        <div class="mock-image" id="prod-image" role="img" aria-label="Imagem ilustrativa do produto"></div>
-      </div>
+    <div class="container product-container" id="product-root" aria-live="polite">
 
-      <!-- Coluna conteúdo -->
-      <div>
-        <div class="back-wrap">
-          <a class="btn btn-outline" href="index.html">← Voltar</a>
-        </div>
-
-        <h1 class="product-title" id="prod-title">Carregando…</h1>
-        <p class="product-sub" id="prod-sub"></p>
-
-        <div class="price-tag" id="prod-price" style="display:none;"></div>
-
-        <article class="copy" aria-label="Descrição detalhada do produto">
-          <div id="prod-copy"></div>
-
-          <div class="note-secure" id="prod-secure">
-            Compra segura: pagamento processado em ambiente externo confiável, com confirmação por e-mail. Suporte por WhatsApp para qualquer dúvida.
+      <!-- Card premium sem imagem -->
+      <section class="product-card-lg" aria-labelledby="prod-title">
+        <div class="product-body">
+          <div class="back-wrap">
+            <a class="btn btn-outline" href="index.html">← Voltar</a>
           </div>
 
-          <div class="actions">
-            <a class="btn btn-primary" id="btn-buy" href="#" target="_blank" rel="noopener">Comprar agora</a>
-            <a class="btn btn-outline" id="btn-whats" href="#" target="_blank" rel="noopener">Ainda tem dúvidas? Clique aqui</a>
-          </div>
-        </article>
+          <h1 class="product-title" id="prod-title">Carregando…</h1>
+          <p class="product-sub" id="prod-sub"></p>
 
-        <div class="back-wrap">
-          <a class="btn btn-outline" href="index.html">← Voltar</a>
+          <div class="price-tag" id="prod-price" style="display:none;"></div>
+
+          <article class="copy" aria-label="Descrição detalhada do produto">
+            <div id="prod-copy"></div>
+
+            <div class="note-secure" id="prod-secure">
+              Compra segura: pagamento processado em ambiente externo confiável, com confirmação por e-mail. Suporte por WhatsApp para qualquer dúvida.
+            </div>
+
+            <div class="actions">
+              <a class="btn btn-primary" id="btn-buy" href="#" target="_blank" rel="noopener">Comprar agora</a>
+              <a class="btn btn-outline" id="btn-whats" href="#" target="_blank" rel="noopener">Ainda tem dúvidas? Clique aqui</a>
+            </div>
+          </article>
+
+          <div class="back-wrap">
+            <a class="btn btn-outline" href="index.html">← Voltar</a>
+          </div>
         </div>
-      </div>
+      </section>
+      <!-- /Card premium -->
+
     </div>
   </main>
 
-  <!-- Botão flutuante do WhatsApp (só nas páginas de produto) -->
+  <!-- Botão flutuante do WhatsApp (somente em páginas de produto) -->
   <a class="fab-whatsapp" id="fab-whats" href="#" target="_blank" rel="noopener" aria-label="Abrir WhatsApp">
     <img src="assets/whatsapp.svg" width="26" height="26" alt="WhatsApp" />
   </a>
 
-  <!-- Overlay/Stepper para Mentoria (CSS-only; ativado via #comprar) -->
+  <!-- Overlay/Stepper para Mentoria (ativado somente para o slug mentoria) -->
   <div id="comprar-root" style="display:none;">
-    <div class="purchase-overlay"></div>
-    <div class="purchase-panel">
+    <div class="purchase-overlay" aria-hidden="true"></div>
+    <div class="purchase-panel" role="dialog" aria-modal="true" aria-labelledby="dlg-title">
       <div class="purchase-head">
-        <h3 class="purchase-title">Escolha sua mentoria</h3>
+        <h3 class="purchase-title" id="dlg-title">Escolha sua mentoria</h3>
         <a class="close-x" href="#" aria-label="Fechar">✕</a>
       </div>
 
@@ -86,6 +86,7 @@
         <!-- Etapa 1 -->
         <div class="stage">
           <div class="hint">1) Selecione o tipo</div>
+          <!-- A ordem dos inputs importa para os seletores CSS -->
           <input type="radio" name="tipo" id="opt-com" />
           <input type="radio" name="tipo" id="opt-sem" />
           <div class="options">
@@ -125,22 +126,26 @@
   </footer>
 
   <script>
-    // util
+    // utils
     const qs = (s, el=document) => el.querySelector(s);
-    const qsp = (s, el=document) => el.querySelectorAll(s);
+    const qsa = (s, el=document) => Array.from(el.querySelectorAll(s));
     const param = (k) => new URLSearchParams(location.search).get(k);
+    const enc = encodeURIComponent;
 
-    function encodeWhats(msg){ return encodeURIComponent(msg); }
+    // ano no rodapé
+    qs('#year').textContent = new Date().getFullYear();
 
     function notFound() {
       qs('#product-root').innerHTML = `
-        <div class="copy" style="grid-column: 1 / -1;">
-          <h2 class="mt-0">Produto não encontrado</h2>
-          <p class="mt-8">Verifique o link. Você pode voltar para a página inicial e escolher novamente.</p>
-          <div class="actions">
-            <a class="btn btn-primary" href="index.html">Voltar para a Home</a>
+        <section class="product-card-lg">
+          <div class="product-body">
+            <h2 class="mt-0">Produto não encontrado</h2>
+            <p class="mt-8">Verifique o link. Você pode voltar para a página inicial e escolher novamente.</p>
+            <div class="actions">
+              <a class="btn btn-primary" href="index.html">Voltar para a Home</a>
+            </div>
           </div>
-        </div>`;
+        </section>`;
       qs('#fab-whats').style.display = 'none';
       document.title = 'Produto não encontrado – PG Concursos';
     }
@@ -158,7 +163,7 @@
 
       // Preenche campos
       qs('#prod-title').textContent = data.title;
-      qs('#prod-sub').textContent = data.subtitle;
+      qs('#prod-sub').textContent = data.subtitle || '';
 
       if (data.price) {
         qs('#prod-price').style.display = 'block';
@@ -175,36 +180,43 @@
       });
 
       // WhatsApp
+      const waNum = data.whatsNumber || '';
       const waMsg = data.whatsMessage || `Tenho dúvidas sobre ${data.title}`;
-      const waLink = `https://wa.me/${data.whatsNumber}?text=${encodeWhats(waMsg)}`;
+      const waLink = waNum ? `https://wa.me/${waNum}?text=${enc(waMsg)}` : '#';
       qs('#btn-whats').href = waLink;
       qs('#fab-whats').href = waLink;
 
+      // Comprar
       const buyBtn = qs('#btn-buy');
 
       if (data.type === 'mentoria') {
-        // Botão abre overlay via âncora #comprar
+        // Abrir overlay com #comprar (CSS :target)
         buyBtn.removeAttribute('target');
         buyBtn.removeAttribute('rel');
         buyBtn.href = '#comprar';
-        // Exibe bloco do overlay
+
         const comprarRoot = qs('#comprar-root');
-        comprarRoot.id = 'comprar'; // para acionar o CSS :target
+        comprarRoot.id = 'comprar';              // ativa os seletores CSS :target
         comprarRoot.style.display = 'block';
 
-        // Preenche links dos planos
+        // Links de planos
         qs('#link-com-mensal').href = data.checkout?.com?.mensal || '#';
         qs('#link-com-trimestral').href = data.checkout?.com?.trimestral || '#';
         qs('#link-sem-mensal').href = data.checkout?.sem?.mensal || '#';
         qs('#link-sem-trimestral').href = data.checkout?.sem?.trimestral || '#';
+
+        // Acessibilidade: focar o título do diálogo quando abrir (escuta hashchange)
+        window.addEventListener('hashchange', () => {
+          if (location.hash === '#comprar') {
+            setTimeout(() => qs('#dlg-title')?.focus?.(), 50);
+          }
+        });
+
       } else {
-        // Link direto para checkout
+        // Link direto de checkout
         buyBtn.href = data.checkoutUrl || '#';
       }
     });
-
-    // Ano no rodapé
-    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
