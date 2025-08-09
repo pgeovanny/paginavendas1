@@ -1,19 +1,19 @@
-// Config WhatsApp (edite)
+// ===== WhatsApp (edite) =====
 const whatsappConfig = {
   numero: "5511999999999",
   mensagem: "Olá! Tenho interesse em saber mais sobre os produtos da PG Concursos."
 };
 
-// Base de produtos (estática)
+// ===== Produtos =====
 const products = {
   manual: {
     slug: "manual",
     titulo: "Manual do Aprovado",
     subtitulo: "O passo a passo definitivo para aprender a estudar do jeito certo e passar mais rápido.",
     preco: "R$ 97,00",
-    imagem: "./assets/manual.jpg", // opcional (placeholder)
+    imagem: "./assets/manual.jpg",
     checkout: "https://link-do-checkout-manual.com",
-    sampleUrl: "", // se quiser "Ver amostra", coloque um link PDF aqui
+    sampleUrl: "",
     copy: `
       Você já gastou horas, dias e até anos estudando para concursos, mas sente que não sai do lugar?
       Que parece estar sempre perdido, sem saber se o que está fazendo realmente funciona? A verdade é que a maioria dos concurseiros começa errado, pulando de método em método, estudando sem organização e perdendo tempo com coisas que não trazem resultado.
@@ -70,20 +70,23 @@ const products = {
   }
 };
 
-// Utils
-function qs(sel){ return document.querySelector(sel); }
+// ===== Helpers =====
 function byId(id){ return document.getElementById(id); }
 function param(name){ return new URLSearchParams(location.search).get(name); }
 function toParagraphs(text){
-  const parts = String(text).trim().split(/\n\s*\n/).map(s=>s.trim()).filter(Boolean);
+  const parts = String(text).trim().split(/\n\s*\n/).map(x=>x.trim()).filter(Boolean);
   return parts.map(p=>`<p>${p}</p>`).join("");
 }
 
-// Página de produto
-(function(){
-  if(!/product\.html$/i.test(location.pathname)) return;
-  const key = param('p');
-  const p = products[key];
+// ===== Init =====
+document.addEventListener('DOMContentLoaded', function(){
+  // Suporta /product e /product.html (Netlify/GitHub)
+  const path = location.pathname.replace(/\/+$/,'');
+  const isProduct = /\/product(?:\.html)?$/i.test(path);
+  if(!isProduct) return;
+
+  const slug = param('p');
+  const p = products[slug];
 
   const title = byId('product-title');
   const sub   = byId('product-subtitle');
@@ -99,53 +102,58 @@ function toParagraphs(text){
 
   const waBtn = byId('whatsapp-cta');
   const waFab = byId('whatsapp-float');
-
-  // WhatsApp link
   const waURL = `https://wa.me/${whatsappConfig.numero}?text=${encodeURIComponent(whatsappConfig.mensagem)}`;
-  waBtn.href = waURL; waFab.href = waURL;
+  if(waBtn) waBtn.href = waURL;
+  if(waFab) waFab.href = waURL;
 
   if(!p){
-    title.textContent = "Produto não encontrado";
-    sub.textContent   = "";
-    copy.innerHTML    = `<p><a class="btn-ghost" href="./">← Voltar</a></p>`;
+    if(title) title.textContent = "Produto não encontrado";
+    if(copy)  copy.innerHTML = `<p><a class="btn-ghost" href="./">← Voltar</a></p>`;
     return;
   }
 
-  // preencher
-  title.textContent = p.titulo;
-  sub.textContent   = p.subtitulo || "";
-  copy.innerHTML    = toParagraphs(p.copy);
-  if(p.imagem) img.src = p.imagem;
+  if(title) title.textContent = p.titulo;
+  if(sub)   sub.textContent   = p.subtitulo || "";
+  if(copy)  copy.innerHTML    = toParagraphs(p.copy || "");
+  if(img && p.imagem) img.src = p.imagem;
 
-  if(p.preco){
+  if(price && p.preco){
     price.style.display = "block";
     price.querySelector('span').textContent = p.preco;
   }
 
   if(p.slug === 'mentoria'){
-    // fluxo em 2 etapas
-    buy.addEventListener('click', e=>{
-      e.preventDefault();
-      step1.style.display = "flex";
-      buy.classList.add('shine-now');
-      if(sample) sample.style.display = "none";
-    });
+    if(buy){
+      buy.addEventListener('click', function(e){
+        e.preventDefault();
+        if(step1) step1.style.display = "flex";
+        if(sample) sample.style.display = "none";
+      });
+    }
+    const withMat = byId('with-material');
+    const withoutMat = byId('without-material');
 
-    byId('with-material').addEventListener('click', ()=>{
+    if(withMat) withMat.addEventListener('click', function(){
       step2.innerHTML = `
         <a class="btn-primary" href="${p.opcoes.comMaterial.mensal}" target="_blank" rel="noopener">Plano mensal</a>
         <a class="btn-primary" href="${p.opcoes.comMaterial.trimestral}" target="_blank" rel="noopener">Plano trimestral</a>
       `;
     });
-    byId('without-material').addEventListener('click', ()=>{
+    if(withoutMat) withoutMat.addEventListener('click', function(){
       step2.innerHTML = `
         <a class="btn-primary" href="${p.opcoes.semMaterial.mensal}" target="_blank" rel="noopener">Plano mensal</a>
         <a class="btn-primary" href="${p.opcoes.semMaterial.trimestral}" target="_blank" rel="noopener">Plano trimestral</a>
       `;
     });
-  }else{
-    // produtos diretos
-    buy.href = p.checkout; buy.target = "_blank"; buy.rel = "noopener";
-    if(p.sampleUrl){ sample.style.display = "inline-flex"; sample.href = p.sampleUrl; }
+  } else {
+    if(buy){
+      buy.href   = p.checkout;
+      buy.target = "_blank";
+      buy.rel    = "noopener";
+    }
+    if(sample && p.sampleUrl){
+      sample.style.display = "inline-flex";
+      sample.href = p.sampleUrl;
+    }
   }
-})();
+});
