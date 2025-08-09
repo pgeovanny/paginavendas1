@@ -13,7 +13,7 @@
   <meta property="og:title" content="PG Concursos – Dominando o Edital" />
   <meta property="og:description" content="Materiais e mentoria para concursos com foco total na sua aprovação." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://seu-dominio-ou-netlify.app/" />
+  <meta property="og:url" content="https://seu-netlify.app/" />
   <meta property="og:image" content="https://via.placeholder.com/1200x630.png?text=PG+Concursos" />
 </head>
 <body>
@@ -22,7 +22,7 @@
   <!-- Header fixo -->
   <header class="site-header" role="banner" aria-label="Cabeçalho">
     <div class="container header-wrap">
-      <a class="brand" href="/" aria-label="Ir para a página inicial">
+      <a class="brand" href="index.html" aria-label="Ir para a página inicial">
         <span class="brand-line brand-pg">PG Concursos</span>
         <span class="brand-x" aria-hidden="true">×</span>
         <span class="brand-line brand-de">Dominando o Edital</span>
@@ -47,7 +47,7 @@
 
         <!-- Cards de produtos na Home -->
         <div id="produtos" class="product-grid" aria-label="Lista de produtos">
-          <a class="product-card" href="manual.html" role="button" aria-label="Abrir produto Manual do Aprovado">
+          <a class="product-card" href="product.html?p=manual" role="button" aria-label="Abrir produto Manual do Aprovado">
             <div class="shine"></div>
             <div class="pc-badge">PDF</div>
             <h3 class="pc-title">Manual do Aprovado</h3>
@@ -55,7 +55,7 @@
             <span class="pc-cta">Ver detalhes</span>
           </a>
 
-          <a class="product-card" href="legislacao.html" role="button" aria-label="Abrir produto Legislação Interna TJ-SP 2025">
+          <a class="product-card" href="product.html?p=legislacao" role="button" aria-label="Abrir produto Legislação Interna TJ-SP 2025">
             <div class="shine"></div>
             <div class="pc-badge">PDF</div>
             <h3 class="pc-title">Legislação Interna TJ-SP 2025</h3>
@@ -63,7 +63,7 @@
             <span class="pc-cta">Ver detalhes</span>
           </a>
 
-          <a class="product-card" href="mentoria.html" role="button" aria-label="Abrir produto Mentoria">
+          <a class="product-card" href="product.html?p=mentoria" role="button" aria-label="Abrir produto Mentoria">
             <div class="shine"></div>
             <div class="pc-badge">Mentoria</div>
             <h3 class="pc-title">Mentoria</h3>
@@ -74,7 +74,7 @@
       </div>
     </section>
 
-    <!-- Bloco "Sobre" enxuto (SEO básico + confiança) -->
+    <!-- Bloco "Sobre" -->
     <section id="sobre" class="about">
       <div class="container about-wrap">
         <div class="about-card">
@@ -112,7 +112,6 @@
     </div>
   </footer>
 
-  <!-- JS opcional só para o ano no rodapé (pode remover se quiser 100% sem JS) -->
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
