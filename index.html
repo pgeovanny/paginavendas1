@@ -21,14 +21,14 @@
     </div>
   </header>
 
-  <!-- HERO (só título + filtro suspenso) -->
+  <!-- HERO -->
   <section class="hero hero--center" aria-labelledby="hero-title">
     <div class="hero-bg" aria-hidden="true"></div>
     <div class="hero-glow" aria-hidden="true"></div>
 
     <div class="wrap hero-wrap glass">
       <h1 id="hero-title" class="hero-title">Você está mais <span class="pulse">próximo</span> da sua aprovação.</h1>
-      <p class="hero-sub">Escolha abaixo e veja as opções.</p>
+      <p class="hero-sub">Selecione o que você procura e veja as opções.</p>
 
       <!-- Filtro suspenso moderno -->
       <div class="filter-bar">
@@ -54,11 +54,11 @@
     </div>
   </section>
 
-  <!-- STAGE (só aparece depois da escolha) -->
+  <!-- STAGE (revela depois da escolha) -->
   <main id="stage" class="wrap stage" role="main" aria-live="polite" data-open="0">
     <!-- Materiais -->
     <section id="lista-materiais" class="cards-grid" hidden aria-label="Materiais">
-      <a class="card-btn" href="./product.html?p=manual">
+      <a class="card-btn" href="product?p=manual">
         <div class="card-bg"></div>
         <div class="card-inner">
           <h3 class="card-title">Manual do Aprovado</h3>
@@ -67,7 +67,7 @@
         </div>
       </a>
 
-      <a class="card-btn" href="./product.html?p=legislacao">
+      <a class="card-btn" href="product?p=legislacao">
         <div class="card-bg"></div>
         <div class="card-inner">
           <h3 class="card-title">Legislação Interna TJ-SP 2025</h3>
@@ -79,7 +79,7 @@
 
     <!-- Mentoria -->
     <section id="lista-mentoria" class="cards-grid" hidden aria-label="Mentoria">
-      <a class="card-btn" href="./product.html?p=mentoria">
+      <a class="card-btn" href="product?p=mentoria">
         <div class="card-bg"></div>
         <div class="card-inner">
           <h3 class="card-title">Mentoria</h3>
@@ -90,7 +90,6 @@
     </section>
   </main>
 
-  <!-- Footer -->
   <footer class="site-footer" role="contentinfo">
     <div class="wrap footer-inner">
       <small class="muted">© <span id="year"></span> PG Concursos — Dominando o Edital.</small>
@@ -99,7 +98,7 @@
 
   <script>
     // ano
-    (function(){ var y=document.getElementById('year'); if(y) y.textContent=new Date().getFullYear(); })();
+    (function(){ const y=document.getElementById('year'); if(y) y.textContent=new Date().getFullYear(); })();
 
     // Filtro suspenso + revelar grid
     (function(){
@@ -128,7 +127,6 @@
         const isMentoria = current==='mentoria';
         gridMat.hidden = isMentoria;
         gridMen.hidden = !isMentoria;
-        // anima leve
         const target = isMentoria ? gridMen : gridMat;
         target.classList.remove('fade-out'); target.classList.add('fade-in');
         setTimeout(()=>target.classList.remove('fade-in'), 320);
@@ -142,7 +140,6 @@
       opts.forEach(o=>o.addEventListener('click', ()=>{ setValue(o.dataset.value); closeMenu(); reveal(); }));
       btn.addEventListener('click', reveal);
 
-      // permitir abrir direto mentoria via hash
       if (location.hash==='#mentoria'){ setValue('mentoria'); reveal(); }
     })();
   </script>
