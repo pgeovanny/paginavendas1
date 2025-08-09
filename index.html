@@ -33,7 +33,6 @@
       <div class="container">
         <h1 id="hero-title" class="hero-title"><span class="spark">Você está mais próximo da sua aprovação.</span></h1>
 
-        <!-- Filtro em card premium -->
         <div class="filter-wrap" id="produtos">
           <div class="filter-card">
             <div class="filter-label">Escolha seu produto:</div>
@@ -48,8 +47,8 @@
             <p class="filter-note" id="filter-note">Selecione uma categoria para ver as opções disponíveis.</p>
           </div>
 
-          <!-- Grid de cards -->
-          <div class="product-grid" aria-live="polite">
+          <div class="product-grid" aria-live="polite" id="grid">
+            <!-- Materiais -->
             <a class="product-card is-hidden" data-cat="materiais" href="product.html?p=manual" aria-label="Manual do Aprovado">
               <div class="shine"></div><div class="pc-badge">PDF</div>
               <h3 class="pc-title">Manual do Aprovado</h3>
@@ -64,6 +63,7 @@
               <span class="pc-cta">Ver detalhes</span>
             </a>
 
+            <!-- Mentoria -->
             <a class="product-card is-hidden" data-cat="mentoria" href="product.html?p=mentoria" aria-label="Mentoria">
               <div class="shine"></div><div class="pc-badge">Mentoria</div>
               <h3 class="pc-title">Mentoria</h3>
@@ -89,13 +89,13 @@
     $('#year').textContent = new Date().getFullYear();
 
     (function setupFilter(){
-      const switchEl = $('.filter-switch');
-      const indicator = $('.seg-indicator', switchEl);
+      const indicator = $('.seg-indicator');
       const tabMateriais = $('#tab-materiais');
       const tabMentoria = $('#tab-mentoria');
       const tabs = [tabMateriais, tabMentoria];
       const cards = $$('.product-grid .product-card');
       const note = $('#filter-note');
+      const grid = $('#grid');
       let active = null;
 
       function positionIndicator(btn){
@@ -103,7 +103,11 @@
         indicator.style.left = btn.offsetLeft + 'px';
         indicator.style.width = btn.offsetWidth + 'px';
       }
-      function showCategory(cat){ cards.forEach(c => c.classList.toggle('is-hidden', c.dataset.cat !== cat)); }
+      function showCategory(cat){
+        cards.forEach(c => c.classList.toggle('is-hidden', c.dataset.cat !== cat));
+        grid.classList.add('showing'); // anima a entrada
+        setTimeout(()=>grid.classList.remove('showing'), 400);
+      }
       function selectTab(btn){
         tabs.forEach(t => t.setAttribute('aria-selected', t === btn ? 'true' : 'false'));
         active = btn; positionIndicator(btn);
