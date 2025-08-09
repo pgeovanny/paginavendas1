@@ -1,6 +1,6 @@
-// ---------------- CONFIGURAÇÕES GERAIS ----------------
+// ---------------- CONFIG GERAL ----------------
 const whatsappConfig = {
-  numero: "5511999999999", // Coloque aqui o número com DDD e DDI sem sinais
+  numero: "5511999999999", // DDI+DDD+numero (apenas dígitos)
   mensagem: "Olá! Tenho interesse em saber mais sobre os produtos da PG Concursos."
 };
 
@@ -14,13 +14,9 @@ const productsData = {
     preco: "R$ 97,00",
     copy: `
       Você já gastou horas, dias e até anos estudando para concursos, mas sente que não sai do lugar?
-      Que parece estar sempre perdido, sem saber se o que está fazendo realmente funciona?
-      A verdade é que a maioria dos concurseiros começa errado, pulando de método em método,
-      estudando sem organização e perdendo tempo com coisas que não trazem resultado.<br><br>
-      O Manual do Aprovado foi criado justamente para mudar essa realidade — por quem já passou
-      por tudo isso e aprendeu na prática o que funciona de verdade para passar em concursos.<br><br>
-      Aqui você vai receber um passo a passo claro, prático e testado, que mostra exatamente
-      o que fazer desde o primeiro dia de estudo até a aprovação.
+      Que parece estar sempre perdido, sem saber se o que está fazendo realmente funciona?<br><br>
+      O Manual do Aprovado foi criado para mudar essa realidade com um passo a passo claro e testado, do primeiro dia até a aprovação.
+      Organize seus estudos, revise com eficiência e resolva questões do jeito certo. Estude menos, estude melhor e passe mais rápido!
     `,
     checkout: "https://link-do-checkout-manual.com"
   },
@@ -31,11 +27,8 @@ const productsData = {
     imagem: "./assets/legislacao-placeholder.jpg",
     preco: "R$ 67,00",
     copy: `
-      Se preparar para o concurso do Tribunal de Justiça de São Paulo exige muito mais do que decorar a lei seca:
-      é preciso conhecer profundamente a legislação interna, os prazos, as competências e os detalhes que caem com frequência.<br><br>
-      Pensando nisso, desenvolvemos o material Legislação Interna TJ-SP 2025, em formato PDF,
-      organizado e visualmente acessível que reúne toda a legislação cobrada no edital de forma didática e prática.<br><br>
-      Incluímos tabelas explicativas e questões inéditas para garantir que você esteja preparado para a prova.
+      Estude a legislação interna do TJ-SP de forma didática: prazos, competências, quóruns e composições em tabelas claras — além de questões inéditas para treinar.
+      Material em PDF, visualmente organizado e direto ao ponto para você acertar mais na prova.
     `,
     checkout: "https://link-do-checkout-legislacao.com"
   },
@@ -46,9 +39,8 @@ const productsData = {
     imagem: "./assets/mentoria-placeholder.jpg",
     preco: "",
     copy: `
-      Conseguir a aprovação em concursos públicos exige planejamento estratégico, organização e acompanhamento correto — e é exatamente isso que nossa Mentoria oferece.<br><br>
-      Na Mentoria, você recebe um plano de estudos totalmente individualizado, elaborado especificamente para o seu perfil.<br><br>
-      Oferecemos duas opções: com material completo ou apenas o plano e acompanhamento, além de planos mensal e trimestral.
+      A Mentoria oferece planejamento estratégico individualizado, metas diárias (teoria, revisão e questões) e suporte direto 7 dias/semana pelo WhatsApp.
+      Opções com material completo ou apenas acompanhamento, com planos mensal e trimestral.
     `,
     opcoes: {
       comMaterial: {
@@ -63,7 +55,7 @@ const productsData = {
   }
 };
 
-// ---------------- FUNÇÕES DE SUPORTE ----------------
+// ---------------- SUPORTE ----------------
 function getProductFromURL() {
   const params = new URLSearchParams(window.location.search);
   const slug = params.get("p");
@@ -72,21 +64,22 @@ function getProductFromURL() {
 
 function loadProductPage() {
   const product = getProductFromURL();
+  const content = document.getElementById("product-content");
   if (!product) {
-    document.getElementById("product-content").innerHTML = `<p>Produto não encontrado.</p>`;
+    if (content) content.innerHTML = `<p>Produto não encontrado. <a href="./" class="btn-ghost" style="margin-left:.4rem;">← Voltar</a></p>`;
     return;
   }
 
+  // preencher dados
   document.getElementById("product-title").textContent = product.titulo;
   document.getElementById("product-subtitle").textContent = product.subtitulo;
   document.getElementById("product-image").src = product.imagem;
   document.getElementById("product-copy").innerHTML = product.copy;
 
-  // Exibe preço, se houver
   const precoEl = document.getElementById("product-price");
   if (product.preco) {
     precoEl.textContent = `Preço: ${product.preco}`;
-    precoEl.style.display = "block";
+    precoEl.style.display = "inline-flex";
   } else {
     precoEl.style.display = "none";
   }
@@ -96,40 +89,43 @@ function loadProductPage() {
   const plansContainer = document.getElementById("mentoria-plans");
 
   if (product.slug === "mentoria") {
-    // Fluxo especial para Mentoria
-    buyBtn.addEventListener("click", () => {
+    // botão abre opções
+    buyBtn.addEventListener("click", function (e) {
+      e.preventDefault();
       optionsContainer.style.display = "flex";
       buyBtn.style.display = "none";
     });
 
+    // handlers
     document.getElementById("with-material").addEventListener("click", () => {
       plansContainer.innerHTML = `
-        <a href="${product.opcoes.comMaterial.mensal}" class="plan-btn" target="_blank">Plano Mensal</a>
-        <a href="${product.opcoes.comMaterial.trimestral}" class="plan-btn" target="_blank">Plano Trimestral</a>
+        <a href="${product.opcoes.comMaterial.mensal}" target="_blank" rel="noopener">Plano mensal</a>
+        <a href="${product.opcoes.comMaterial.trimestral}" target="_blank" rel="noopener">Plano trimestral</a>
       `;
     });
 
     document.getElementById("without-material").addEventListener("click", () => {
       plansContainer.innerHTML = `
-        <a href="${product.opcoes.semMaterial.mensal}" class="plan-btn" target="_blank">Plano Mensal</a>
-        <a href="${product.opcoes.semMaterial.trimestral}" class="plan-btn" target="_blank">Plano Trimestral</a>
+        <a href="${product.opcoes.semMaterial.mensal}" target="_blank" rel="noopener">Plano mensal</a>
+        <a href="${product.opcoes.semMaterial.trimestral}" target="_blank" rel="noopener">Plano trimestral</a>
       `;
     });
   } else {
-    // Produtos normais
+    // produtos normais
     buyBtn.href = product.checkout;
     buyBtn.target = "_blank";
+    buyBtn.rel = "noopener";
   }
 
-  // Botão WhatsApp flutuante
-  const waBtn = document.getElementById("whatsapp-float");
-  if (waBtn) {
+  // WhatsApp flutuante
+  const wf = document.getElementById("whatsapp-float");
+  if (wf && typeof whatsappConfig !== "undefined") {
     const msg = encodeURIComponent(whatsappConfig.mensagem);
-    waBtn.href = `https://wa.me/${whatsappConfig.numero}?text=${msg}`;
+    wf.href = `https://wa.me/${whatsappConfig.numero}?text=${msg}`;
   }
 }
 
-// ---------------- EXPORTS PARA index.html ----------------
-if (window.location.pathname.includes("product.html")) {
+// inicialização somente na página de produto
+if (typeof window !== "undefined" && window.location.pathname.includes("product.html")) {
   document.addEventListener("DOMContentLoaded", loadProductPage);
 }
