@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
-  <!-- Header -->
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="./"><span class="brand-left">PG Concursos</span><span class="brand-divider">×</span><span class="brand-right">Dominando o Edital</span></a>
@@ -20,7 +19,6 @@
     <p class="backline"><a href="./" class="btn-ghost">← Voltar</a></p>
 
     <article id="product-content" class="product-grid" aria-labelledby="product-title">
-      <!-- Mídia -->
       <div class="product-media">
         <div class="product-media-inner">
           <img id="product-image" alt="Imagem do produto" src=""
@@ -28,7 +26,6 @@
         </div>
       </div>
 
-      <!-- Texto -->
       <div class="product-info">
         <header class="product-head">
           <h1 id="product-title" class="product-title">&nbsp;</h1>
@@ -37,19 +34,18 @@
 
         <div class="product-meta">
           <span id="product-price" class="price-pill" style="display:none;"></span>
-          <span id="product-badge" class="badge" style="display:none;">Compra garantida • Entrega imediata</span>
+          <span class="badge">Compra garantida • Entrega imediata</span>
         </div>
 
         <section id="product-copy" class="product-copy"></section>
 
-        <!-- CTAs alinhadas -->
         <div class="cta-stack">
           <div class="cta-row">
             <a id="buy-button" class="btn-primary" href="#" role="button">Comprar Agora</a>
             <a id="sample-button" class="btn-ghost" href="#" target="_blank" rel="noopener" style="display:none;">Ver amostra</a>
           </div>
 
-          <!-- Fluxo Mentoria -->
+          <!-- Mentoria (2 passos) -->
           <div id="mentoria-options" class="flow-steps" style="display:none;">
             <button id="with-material" class="btn-ghost" type="button">Mentoria com material</button>
             <button id="without-material" class="btn-ghost" type="button">Mentoria sem material</button>
@@ -66,7 +62,6 @@
     </article>
   </main>
 
-  <!-- WhatsApp flutuante (apenas aqui) -->
   <a id="whatsapp-float" href="#" target="_blank" rel="noopener" class="wa-float" aria-label="WhatsApp"></a>
 
   <footer class="site-footer">
@@ -77,7 +72,6 @@
 
   <script src="./products.js"></script>
   <script>
-    // rodapé + whatsapp links
     (function(){
       var y=document.getElementById('year'); if(y) y.textContent=new Date().getFullYear();
       document.addEventListener('DOMContentLoaded', function(){
