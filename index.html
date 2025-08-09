@@ -29,78 +29,71 @@
       </a>
       <nav class="nav" aria-label="Principal">
         <a class="nav-link" href="#produtos">Produtos</a>
-        <a class="nav-link" href="#sobre">Sobre</a>
         <a class="nav-link cta-small" href="#produtos">Começar</a>
       </nav>
     </div>
   </header>
 
-  <!-- Hero -->
+  <!-- Hero + Filtro -->
   <main id="conteudo">
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-bg"></div>
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <h1 id="hero-title" class="hero-title">Você está mais próximo da sua aprovação.</h1>
-          <p class="hero-sub">Materiais práticos, visuais e uma mentoria direta ao ponto para acelerar seu resultado.</p>
-        </div>
+      <div class="container">
+        <h1 id="hero-title" class="hero-title">
+          <span class="spark">Você está mais próximo da sua aprovação.</span>
+        </h1>
 
-        <!-- Cards de produtos na Home -->
-        <div id="produtos" class="product-grid" aria-label="Lista de produtos">
-          <a class="product-card" href="product.html?p=manual" role="button" aria-label="Abrir produto Manual do Aprovado">
-            <div class="shine"></div>
-            <div class="pc-badge">PDF</div>
-            <h3 class="pc-title">Manual do Aprovado</h3>
-            <p class="pc-sub">O passo a passo definitivo para estudar certo e passar mais rápido.</p>
-            <span class="pc-cta">Ver detalhes</span>
-          </a>
+        <div class="filter-wrap" id="produtos">
+          <div class="filter-label">Escolha seu produto:</div>
 
-          <a class="product-card" href="product.html?p=legislacao" role="button" aria-label="Abrir produto Legislação Interna TJ-SP 2025">
-            <div class="shine"></div>
-            <div class="pc-badge">PDF</div>
-            <h3 class="pc-title">Legislação Interna TJ-SP 2025</h3>
-            <p class="pc-sub">Conteúdo direto, tabelado e com questões inéditas.</p>
-            <span class="pc-cta">Ver detalhes</span>
-          </a>
+          <!-- Switch (Materiais / Mentoria) -->
+          <div class="filter-switch" role="tablist" aria-label="Filtro de produtos">
+            <div class="seg-indicator" aria-hidden="true"></div>
 
-          <a class="product-card" href="product.html?p=mentoria" role="button" aria-label="Abrir produto Mentoria">
-            <div class="shine"></div>
-            <div class="pc-badge">Mentoria</div>
-            <h3 class="pc-title">Mentoria</h3>
-            <p class="pc-sub">Plano personalizado para acelerar sua aprovação.</p>
-            <span class="pc-cta">Ver detalhes</span>
-          </a>
-        </div>
-      </div>
-    </section>
+            <button class="seg-pill" role="tab" id="tab-materiais" aria-selected="true" aria-controls="panel-materiais">
+              Materiais
+            </button>
+            <button class="seg-pill" role="tab" id="tab-mentoria" aria-selected="false" aria-controls="panel-mentoria">
+              Mentoria
+            </button>
+          </div>
 
-    <!-- Bloco "Sobre" -->
-    <section id="sobre" class="about">
-      <div class="container about-wrap">
-        <div class="about-card">
-          <h2 class="about-title">Por que nossos materiais funcionam?</h2>
-          <p class="about-text">
-            Estruturamos o estudo de forma visual e objetiva para você memorizar o que realmente cai.
-            Tabelas, mapas e linguagem direta — sem enfeite. O foco é fazer você ganhar nota e tempo.
-          </p>
-        </div>
-        <div class="about-card">
-          <h2 class="about-title">Experiência aplicada</h2>
-          <p class="about-text">
-            Estratégias testadas na prática, alinhadas a editais atuais. Do planejamento ao dia da prova, você sabe exatamente o que fazer.
-          </p>
-        </div>
-        <div class="about-card">
-          <h2 class="about-title">Compra segura</h2>
-          <p class="about-text">
-            Checkouts externos confiáveis e suporte via WhatsApp nas páginas de produto. Sem distrações, sem complicação.
-          </p>
+          <p class="filter-note">Selecione uma categoria para ver as opções disponíveis.</p>
+
+          <!-- Cards (mesma grade; JS apenas oculta/mostra por categoria) -->
+          <div class="product-grid" aria-live="polite">
+            <!-- Materiais -->
+            <a class="product-card" data-cat="materiais" href="product.html?p=manual" role="button" aria-label="Abrir produto Manual do Aprovado">
+              <div class="shine"></div>
+              <div class="pc-badge">PDF</div>
+              <h3 class="pc-title">Manual do Aprovado</h3>
+              <p class="pc-sub">O passo a passo definitivo para estudar certo e passar mais rápido.</p>
+              <span class="pc-cta">Ver detalhes</span>
+            </a>
+
+            <a class="product-card" data-cat="materiais" href="product.html?p=legislacao" role="button" aria-label="Abrir produto Legislação Interna TJ-SP 2025">
+              <div class="shine"></div>
+              <div class="pc-badge">PDF</div>
+              <h3 class="pc-title">Legislação Interna TJ-SP 2025</h3>
+              <p class="pc-sub">Conteúdo direto, tabelado e com questões inéditas.</p>
+              <span class="pc-cta">Ver detalhes</span>
+            </a>
+
+            <!-- Mentoria -->
+            <a class="product-card" data-cat="mentoria" href="product.html?p=mentoria" role="button" aria-label="Abrir produto Mentoria">
+              <div class="shine"></div>
+              <div class="pc-badge">Mentoria</div>
+              <h3 class="pc-title">Mentoria</h3>
+              <p class="pc-sub">Plano personalizado para acelerar sua aprovação.</p>
+              <span class="pc-cta">Ver detalhes</span>
+            </a>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Rodapé -->
+  <!-- Rodapé enxuto -->
   <footer class="site-footer" role="contentinfo">
     <div class="container footer-wrap">
       <small>© <span id="year"></span> PG Concursos — Dominando o Edital. Todos os direitos reservados.</small>
@@ -113,7 +106,65 @@
   </footer>
 
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    // Utilidades
+    const $ = (s, el=document) => el.querySelector(s);
+    const $$ = (s, el=document) => Array.from(el.querySelectorAll(s));
+
+    // Ano no rodapé
+    $('#year').textContent = new Date().getFullYear();
+
+    // Filtro Materiais/Mentoria com acessibilidade e indicador animado
+    (function setupFilter(){
+      const switchEl = $('.filter-switch');
+      const indicator = $('.seg-indicator', switchEl);
+      const tabs = $$('.seg-pill', switchEl);
+      const cards = $$('.product-grid .product-card');
+
+      // Seleção inicial: Materiais
+      let active = tabs[0];
+      function positionIndicator(btn){
+        const rect = btn.getBoundingClientRect();
+        const parentRect = switchEl.getBoundingClientRect();
+        const left = rect.left - parentRect.left + 6; // padding do switch
+        const width = rect.width;
+        indicator.style.transform = `translateX(${left - 6}px)`; // neutralizar padding inicial
+        indicator.style.width = `${width}px`;
+      }
+
+      function selectTab(btn){
+        tabs.forEach(t => t.setAttribute('aria-selected', t === btn ? 'true' : 'false'));
+        active = btn;
+        positionIndicator(btn);
+
+        const cat = btn.id.includes('mentoria') ? 'mentoria' : 'materiais';
+        cards.forEach(card => {
+          const isMatch = card.dataset.cat === cat;
+          card.classList.toggle('is-hidden', !isMatch);
+        });
+      }
+
+      // Eventos de clique/teclado
+      tabs.forEach(btn => {
+        btn.addEventListener('click', () => selectTab(btn));
+        btn.addEventListener('keydown', (e) => {
+          const idx = tabs.indexOf(active);
+          if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+            e.preventDefault();
+            const next = e.key === 'ArrowRight'
+              ? tabs[(idx + 1) % tabs.length]
+              : tabs[(idx - 1 + tabs.length) % tabs.length];
+            next.focus();
+            selectTab(next);
+          }
+        });
+      });
+
+      // Ajuste em resize
+      window.addEventListener('resize', () => positionIndicator(active));
+
+      // Estado inicial
+      selectTab(active);
+    })();
   </script>
 </body>
 </html>
