@@ -291,13 +291,13 @@ a:hover{ text-decoration:underline; }
 #comprar:target .purchase-panel{
   opacity:1; transform: translateY(0); pointer-events:auto;
 }
+#comprar:target .purchase-overlay{ opacity:1; pointer-events:auto; }
+
 .purchase-overlay{
   position:fixed; inset:0; z-index:1100; display:block;
   background: rgba(7, 17, 44, .55);
   opacity:0; pointer-events:none; transition: opacity var(--speed) ease;
 }
-#comprar:target .purchase-overlay{ opacity:1; pointer-events:auto; }
-
 .purchase-panel{
   position:fixed; left:50%; top:7vh; transform: translate(-50%, 12px);
   width:min(720px, 92vw);
