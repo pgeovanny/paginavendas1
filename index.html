@@ -9,7 +9,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
-  <!-- Open Graph -->
   <meta property="og:title" content="PG Concursos – Dominando o Edital" />
   <meta property="og:description" content="Materiais e mentoria para concursos com foco total na sua aprovação." />
   <meta property="og:type" content="website" />
@@ -19,7 +18,6 @@
 <body>
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
-  <!-- Header fixo -->
   <header class="site-header" role="banner" aria-label="Cabeçalho">
     <div class="container header-wrap">
       <a class="brand" href="index.html" aria-label="Ir para a página inicial">
@@ -34,7 +32,6 @@
     </div>
   </header>
 
-  <!-- Hero + Filtro -->
   <main id="conteudo">
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-bg"></div>
@@ -46,23 +43,15 @@
         <div class="filter-wrap" id="produtos">
           <div class="filter-label">Escolha seu produto:</div>
 
-          <!-- Switch (Materiais / Mentoria) -->
           <div class="filter-switch" role="tablist" aria-label="Filtro de produtos">
             <div class="seg-indicator" aria-hidden="true"></div>
-
-            <button class="seg-pill" role="tab" id="tab-materiais" aria-selected="true" aria-controls="panel-materiais">
-              Materiais
-            </button>
-            <button class="seg-pill" role="tab" id="tab-mentoria" aria-selected="false" aria-controls="panel-mentoria">
-              Mentoria
-            </button>
+            <button class="seg-pill" role="tab" id="tab-materiais" aria-selected="true">Materiais</button>
+            <button class="seg-pill" role="tab" id="tab-mentoria" aria-selected="false">Mentoria</button>
           </div>
 
-          <p class="filter-note">Selecione uma categoria para ver as opções disponíveis.</p>
+          <p class="filter-note" id="filter-note">Selecione uma categoria para ver as opções disponíveis.</p>
 
-          <!-- Cards (mesma grade; JS apenas oculta/mostra por categoria) -->
           <div class="product-grid" aria-live="polite">
-            <!-- Materiais -->
             <a class="product-card" data-cat="materiais" href="product.html?p=manual" role="button" aria-label="Abrir produto Manual do Aprovado">
               <div class="shine"></div>
               <div class="pc-badge">PDF</div>
@@ -79,7 +68,6 @@
               <span class="pc-cta">Ver detalhes</span>
             </a>
 
-            <!-- Mentoria -->
             <a class="product-card" data-cat="mentoria" href="product.html?p=mentoria" role="button" aria-label="Abrir produto Mentoria">
               <div class="shine"></div>
               <div class="pc-badge">Mentoria</div>
@@ -93,7 +81,6 @@
     </section>
   </main>
 
-  <!-- Rodapé enxuto -->
   <footer class="site-footer" role="contentinfo">
     <div class="container footer-wrap">
       <small>© <span id="year"></span> PG Concursos — Dominando o Edital. Todos os direitos reservados.</small>
@@ -106,64 +93,59 @@
   </footer>
 
   <script>
-    // Utilidades
     const $ = (s, el=document) => el.querySelector(s);
     const $$ = (s, el=document) => Array.from(el.querySelectorAll(s));
-
-    // Ano no rodapé
     $('#year').textContent = new Date().getFullYear();
 
-    // Filtro Materiais/Mentoria com acessibilidade e indicador animado
     (function setupFilter(){
       const switchEl = $('.filter-switch');
       const indicator = $('.seg-indicator', switchEl);
-      const tabs = $$('.seg-pill', switchEl);
+      const tabMateriais = $('#tab-materiais');
+      const tabMentoria = $('#tab-mentoria');
+      const tabs = [tabMateriais, tabMentoria];
       const cards = $$('.product-grid .product-card');
+      const note = $('#filter-note');
 
-      // Seleção inicial: Materiais
-      let active = tabs[0];
       function positionIndicator(btn){
-        const rect = btn.getBoundingClientRect();
-        const parentRect = switchEl.getBoundingClientRect();
-        const left = rect.left - parentRect.left + 6; // padding do switch
-        const width = rect.width;
-        indicator.style.transform = `translateX(${left - 6}px)`; // neutralizar padding inicial
-        indicator.style.width = `${width}px`;
+        const left = btn.offsetLeft;
+        const width = btn.offsetWidth;
+        indicator.style.left = left + 'px';
+        indicator.style.width = width + 'px';
+      }
+
+      function showCategory(cat){
+        cards.forEach(card => {
+          const match = card.dataset.cat === cat;
+          card.classList.toggle('is-hidden', !match);
+        });
       }
 
       function selectTab(btn){
         tabs.forEach(t => t.setAttribute('aria-selected', t === btn ? 'true' : 'false'));
-        active = btn;
         positionIndicator(btn);
-
-        const cat = btn.id.includes('mentoria') ? 'mentoria' : 'materiais';
-        cards.forEach(card => {
-          const isMatch = card.dataset.cat === cat;
-          card.classList.toggle('is-hidden', !isMatch);
-        });
+        const cat = (btn === tabMentoria) ? 'mentoria' : 'materiais';
+        showCategory(cat);
+        if(note) note.style.display = 'none';
       }
 
-      // Eventos de clique/teclado
+      // eventos
       tabs.forEach(btn => {
         btn.addEventListener('click', () => selectTab(btn));
         btn.addEventListener('keydown', (e) => {
-          const idx = tabs.indexOf(active);
+          const idx = tabs.indexOf(document.activeElement);
           if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
             e.preventDefault();
             const next = e.key === 'ArrowRight'
               ? tabs[(idx + 1) % tabs.length]
               : tabs[(idx - 1 + tabs.length) % tabs.length];
-            next.focus();
-            selectTab(next);
+            next.focus(); selectTab(next);
           }
         });
       });
 
-      // Ajuste em resize
-      window.addEventListener('resize', () => positionIndicator(active));
-
-      // Estado inicial
-      selectTab(active);
+      // inicial: Materiais selecionado (esconde mentoria)
+      selectTab(tabMateriais);
+      window.addEventListener('resize', () => positionIndicator($('.seg-pill[aria-selected="true"]')));
     })();
   </script>
 </body>
