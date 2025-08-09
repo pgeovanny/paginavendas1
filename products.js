@@ -1,25 +1,23 @@
 /* ==========================================================
    PG Concursos – Dominando o Edital
-   Arquivo: products.js
-   Descrição: catálogo estático consumido por product.html?p=<slug>
-   Edite preços, links de checkout e WhatsApp conforme necessário.
+   products.js (final)
    ========================================================== */
 
 (function () {
   const WHATS_NUMBER = "5599999999999"; // <-- seu número com DDI (55BR) + DDD + número, só dígitos
 
   window.PRODUCTS = {
-    /* -------------------- MANUAL DO APROVADO -------------------- */
     manual: {
       slug: "manual",
       type: "pdf",
       title: "Manual do Aprovado",
       subtitle: "“O passo a passo definitivo para aprender a estudar do jeito certo e passar mais rápido.”",
-      price: "R$ 97,00", // deixe "" para ocultar
-      // checkout direto
+      price: "R$ 97,00",
       checkoutUrl: "https://checkout.exemplo.com/manual",
       whatsNumber: WHATS_NUMBER,
       whatsMessage: "Tenho dúvidas sobre o Manual do Aprovado",
+      // opcional:
+      sampleUrl: "https://exemplo.com/amostra-manual.pdf",
       copy: [
         "Você já gastou horas, dias e até anos estudando para concursos, mas sente que não sai do lugar? Que parece estar sempre perdido, sem saber se o que está fazendo realmente funciona? A verdade é que a maioria dos concurseiros começa errado, pulando de método em método, estudando sem organização e perdendo tempo com coisas que não trazem resultado.",
         "O Manual do Aprovado foi criado justamente para mudar essa realidade — por quem já passou por tudo isso e aprendeu na prática o que funciona de verdade para passar em concursos.",
@@ -31,7 +29,6 @@
       ]
     },
 
-    /* -------------------- LEGISLAÇÃO INTERNA TJ-SP 2025 -------------------- */
     legislacao: {
       slug: "legislacao",
       type: "pdf",
@@ -41,6 +38,8 @@
       checkoutUrl: "https://checkout.exemplo.com/legislacao",
       whatsNumber: WHATS_NUMBER,
       whatsMessage: "Tenho dúvidas sobre o material de Legislação Interna TJ-SP 2025",
+      // opcional:
+      sampleUrl: "https://exemplo.com/amostra-legislacao.pdf",
       copy: [
         "Se preparar para o concurso do Tribunal de Justiça de São Paulo exige muito mais do que decorar a lei seca: é preciso conhecer profundamente a legislação interna, os prazos, as competências e os detalhes que caem com frequência nas provas.",
         "Pensando nisso, desenvolvemos o material Legislação Interna TJ-SP 2025, em formato PDF, organizado e visualmente acessível que reúne toda a legislação cobrada no edital de forma didática e prática.",
@@ -50,14 +49,12 @@
       ]
     },
 
-    /* -------------------- MENTORIA -------------------- */
     mentoria: {
       slug: "mentoria",
-      type: "mentoria", // ativa o fluxo especial no product.html
+      type: "mentoria",
       title: "Mentoria",
       subtitle: "“Mentoria personalizada para planejar e acelerar sua aprovação.”",
-      price: "", // opcional (ex.: "A partir de R$ 197,00")
-      // fluxo: primeiro escolhe tipo (com/sem material) e depois plano (mensal/trimestral)
+      price: "",
       checkout: {
         com: {
           mensal: "https://checkout.exemplo.com/mentoria-com-material-mensal",
