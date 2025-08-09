@@ -1,9 +1,9 @@
 /* ===========================
    PG Concursos – Dominando o Edital
-   Arquivo: styles.css (rev 3)
+   styles.css (final)
    =========================== */
 
-/* ---------- Reset & Base ---------- */
+/* Reset & Base */
 *,
 *::before,
 *::after { box-sizing: border-box; }
@@ -12,20 +12,27 @@
   --bg-1:#07112c;
   --bg-2:#0e1f4b;
   --bg-3:#142a66;
+
   --text:#ffffff;
   --text-soft:#cfe0ff;
+
   --primary:#204489;
   --primary-hover:#18356f;
+
   --line-1:rgba(173,197,255,.18);
   --line-2:rgba(173,197,255,.28);
+
   --shadow-1:0 10px 30px rgba(0,0,0,.35);
   --shadow-2:0 6px 18px rgba(12,24,64,.45);
+
   --glass-bg:rgba(255,255,255,.04);
   --blur:16px;
+
   --radius-xl:22px;
   --radius-lg:18px;
   --radius-md:14px;
   --radius-sm:10px;
+
   --container:1200px;
   --speed:280ms;
 }
@@ -45,7 +52,7 @@ body{
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Typography fluid */
+/* Type */
 h1,h2,h3{ margin:0 0 .45rem 0; line-height:1.18; font-weight:800; font-family:Poppins, Inter, system-ui, sans-serif; }
 h1{ font-size: clamp(1.95rem, 5.2vw, 3.4rem); letter-spacing:-.02em; }
 h2{ font-size: clamp(1.3rem, 3vw, 2rem); }
@@ -54,7 +61,7 @@ p{ margin:.35rem 0 1rem; color:var(--text-soft); font-size:clamp(1rem, 1.3vw, 1.
 a{ color:#cfe0ff; text-decoration:none; }
 a:hover{ text-decoration:underline; }
 
-/* Containers */
+/* Layout helpers */
 .container{ width:100%; max-width:var(--container); margin:0 auto; padding:0 18px; }
 @media (min-width:720px){ .container{ padding:0 24px; } }
 
@@ -65,7 +72,7 @@ a:hover{ text-decoration:underline; }
   background:#000; color:#fff; border-radius:8px; outline:2px solid var(--text);
 }
 
-/* ---------- Header ---------- */
+/* Header */
 .site-header{
   position:sticky; top:0; z-index:900;
   backdrop-filter:saturate(120%) blur(12px);
@@ -75,15 +82,17 @@ a:hover{ text-decoration:underline; }
 .header-wrap{ display:flex; align-items:center; justify-content:space-between; height:68px; }
 .brand{ display:flex; align-items:baseline; gap:.55rem; font-weight:700; letter-spacing:.2px; }
 .brand-line{ display:inline-block; }
-.brand-pg{ color:#eaf1ff; } .brand-de{ color:#a9c3ff; font-weight:600; }
+.brand-pg{ color:#eaf1ff; }
+.brand-de{ color:#a9c3ff; font-weight:600; }
 .brand-x{ opacity:.5; transform: translateY(-1px); }
 
 .nav{ display:flex; align-items:center; gap:.6rem; }
 .nav-link{ padding:10px 12px; border-radius:10px; font-weight:600; border:1px solid transparent; }
 .nav-link:hover{ background:rgba(255,255,255,.04); border-color:var(--line-2); text-decoration:none; }
-.cta-small{ background:var(--primary); color:#fff; } .cta-small:hover{ background:var(--primary-hover); }
+.cta-small{ background:var(--primary); color:#fff; }
+.cta-small:hover{ background:var(--primary-hover); }
 
-/* ---------- Hero (Home) ---------- */
+/* Hero */
 .hero{ position:relative; padding: clamp(58px, 11vh, 120px) 0 clamp(32px, 8vh, 80px); }
 .hero-bg{
   position:absolute; inset:0; z-index:-1;
@@ -91,15 +100,10 @@ a:hover{ text-decoration:underline; }
     radial-gradient(620px 260px at 75% 0%, rgba(84,138,255,.25), transparent 60%),
     radial-gradient(860px 320px at 10% 20%, rgba(109,149,255,.18), transparent 60%);
 }
-
-/* Headline com efeito + fallback visível */
-.hero-title{ position:relative; margin-bottom:.6rem; z-index:1; color:#fff; text-shadow:0 0 22px rgba(141,170,255,.18); }
-@supports ((-webkit-background-clip: text) or (background-clip: text)){
-  .hero-title{
-    background: linear-gradient(180deg,#ffffff, #cfe4ff 70%, #a9c3ff);
-    -webkit-background-clip:text; background-clip:text;
-    color:transparent; -webkit-text-fill-color:transparent;
-  }
+/* Texto estável (sem background-clip) */
+.hero-title{
+  position:relative; margin-bottom:.6rem; z-index:1;
+  color:#fff; text-shadow:0 0 22px rgba(141,170,255,.18);
 }
 .hero-title .spark{ position:relative; display:inline-block; }
 .hero-title .spark::after{
@@ -109,7 +113,7 @@ a:hover{ text-decoration:underline; }
 }
 @keyframes sweep{ 0%{ transform: translateX(0); opacity:.0; } 35%{ opacity:.6; } 60%{ transform: translateX(520%); opacity:.0; } 100%{ opacity:0; } }
 
-/* ---------- Filtro Moderno (Home) ---------- */
+/* Filtro (Materiais/Mentoria) */
 .filter-wrap{ margin-top:18px; }
 .filter-label{ font-weight:700; margin: 10px 0 10px; color:#eaf1ff; }
 
@@ -126,15 +130,16 @@ a:hover{ text-decoration:underline; }
 }
 .seg-pill[aria-selected="true"]{ color:#06122e; }
 .seg-indicator{
-  position:absolute; z-index:0; top:6px; left:6px; height: calc(100% - 12px); width: 50%;
+  position:absolute; z-index:0; top:6px; left:6px; height: calc(100% - 12px);
   border-radius:999px; background: linear-gradient(180deg, #e8f1ff, #c8dbff);
   box-shadow: 0 10px 26px rgba(200, 219, 255, .45);
-  transition: transform var(--speed) ease, width var(--speed) ease, left var(--speed) ease;
+  transition: transform var(--speed) ease, width var(--speed) ease, left var(--speed) ease, opacity var(--speed) ease;
+  opacity:0; pointer-events:none; /* só aparece após seleção */
 }
 
 .filter-note{ margin-top:10px; font-size:.95rem; color:#d6e4ff; opacity:.9; }
 
-/* ---------- Product grid (Home) ---------- */
+/* Grid - Home */
 .product-grid{ display:grid; gap:16px; margin-top:18px; grid-template-columns: 1fr; }
 @media (min-width:900px){ .product-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); } }
 @media (min-width:1200px){ .product-grid{ grid-template-columns: repeat(3, minmax(0,1fr)); } }
@@ -160,7 +165,7 @@ a:hover{ text-decoration:underline; }
 .pc-cta::after{ content:"→"; opacity:.7; transform: translateX(0); transition: transform var(--speed) ease, opacity var(--speed) ease; }
 .product-card:hover .pc-cta::after{ transform: translateX(4px); opacity:1; }
 
-/* Luz "correndo" */
+/* Luz correndo */
 .product-card .shine{
   position:absolute; inset:0; z-index:-1; pointer-events:none;
   background: linear-gradient(120deg, transparent 20%, rgba(255,255,255,.22) 35%, transparent 55%);
@@ -168,16 +173,16 @@ a:hover{ text-decoration:underline; }
 }
 .product-card:hover .shine{ transform: translateX(120%); }
 
-/* Esconder/mostrar via JS */
+/* Ocultar itens fora da categoria */
 .is-hidden{ display:none !important; }
 
-/* ---------- Footer ---------- */
+/* Footer */
 .site-footer{ padding:26px 0; border-top:1px solid var(--line-1); background: linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.06)); }
 .footer-wrap{ display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap; }
 .footer-links{ display:flex; align-items:center; gap:10px; }
 .footer-links .sep{ opacity:.5; }
 
-/* ---------- Buttons ---------- */
+/* Buttons */
 .btn{
   display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
   padding:12px 18px; font-weight:800; border-radius:12px; border:1px solid transparent;
@@ -191,10 +196,11 @@ a:hover{ text-decoration:underline; }
 .btn-outline{ background:transparent; border-color:var(--line-2); color:#eaf1ff; }
 .btn-outline:hover{ background:rgba(255,255,255,.05); text-decoration:none; }
 
-/* ---------- Product Page (sem imagem) ---------- */
+/* Product page (sem imagem) */
 .product-page{ padding: clamp(44px, 8vh, 90px) 0 68px; }
 .product-container{ max-width: 980px; margin: 0 auto; }
 
+/* Card de header */
 .product-header-card{
   position:relative; overflow:hidden; padding: clamp(18px, 2.2vw, 26px);
   border-radius: var(--radius-xl);
@@ -215,7 +221,7 @@ a:hover{ text-decoration:underline; }
 
 .actions{ display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; }
 
-/* Grid para a copy em 3 cards */
+/* Copy em 3 cards */
 .content-grid{ display:grid; gap:14px; margin-top:16px; grid-template-columns: 1fr; }
 @media (min-width:820px){ .content-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); } }
 @media (min-width:1180px){ .content-grid{ grid-template-columns: repeat(3, minmax(0,1fr)); } }
@@ -229,7 +235,7 @@ a:hover{ text-decoration:underline; }
 /* Voltar */
 .back-wrap{ margin: 0 0 14px; }
 
-/* ---------- WhatsApp Floating (somente nas páginas de produto) ---------- */
+/* WhatsApp FAB (só nas páginas de produto) */
 .fab-whatsapp{
   position:fixed; right:18px; bottom:18px; z-index:1200;
   display:inline-flex; align-items:center; justify-content:center;
@@ -241,7 +247,7 @@ a:hover{ text-decoration:underline; }
 .fab-whatsapp:hover{ transform: translateY(-2px); }
 .fab-whatsapp img{ width:26px; height:26px; display:block; }
 
-/* ---------- Overlay / Stepper Mentoria (mantido) ---------- */
+/* Mentoria overlay (mantido) */
 #comprar:target .purchase-panel{ opacity:1; transform: translateY(0); pointer-events:auto; }
 #comprar:target .purchase-overlay{ opacity:1; pointer-events:auto; }
 
@@ -290,14 +296,5 @@ a:hover{ text-decoration:underline; }
 #opt-com:checked ~ .plans-com{ display:grid; }
 #opt-sem:checked ~ .plans-sem{ display:grid; }
 
-/* ---------- Utilities & Focus ---------- */
-.hide-mobile{ display:none; }
-@media (min-width:740px){ .hide-mobile{ display:initial; } }
-.center{ text-align:center; }
-.mt-0{ margin-top:0 !important; }
-.mt-8{ margin-top:8px !important; }
-.mt-12{ margin-top:12px !important; }
-.mt-16{ margin-top:16px !important; }
-.mt-24{ margin-top:24px !important; }
-
+/* Focus */
 :focus-visible{ outline: 2px solid #a9c3ff; outline-offset: 2px; border-radius: 8px; }
