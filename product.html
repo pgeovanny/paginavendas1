@@ -27,73 +27,34 @@
   <main id="conteudo" class="product-page">
     <div class="container product-container" id="product-root" aria-live="polite">
 
-      <!-- CARD ÚNICO – Materiais -->
-      <section id="material-card" class="material-card" hidden>
-        <div class="material-body">
-          <div class="back-wrap"><a class="btn btn-outline" href="index.html">← Voltar</a></div>
-          <div class="material-head">
-            <h1 id="m-title">Carregando…</h1>
-            <p id="m-sub"></p>
-          </div>
-
-          <div id="m-copy" class="material-copy"></div>
-
-          <hr class="divider" />
-
-          <div class="price-actions">
-            <div class="price-tag" id="m-price"></div>
-            <a class="btn btn-primary" id="m-buy" href="#" target="_blank" rel="noopener">Comprar agora</a>
-            <a class="btn btn-primary" id="m-sample" href="#" target="_blank" rel="noopener" style="display:none;">Ver amostra</a>
-            <a class="btn btn-outline" id="m-whats" href="#" target="_blank" rel="noopener">Ainda tem dúvidas? Clique aqui</a>
-          </div>
-        </div>
-      </section>
-
-      <!-- MENTORIA (mantido) -->
-      <section id="mentoria-card" class="product-header-card" hidden>
+      <!-- Header-card comum -->
+      <section class="product-header-card" aria-labelledby="prod-title">
         <div class="product-body">
           <div class="back-wrap"><a class="btn btn-outline" href="index.html">← Voltar</a></div>
-          <h1 class="product-title" id="t-title">Mentoria</h1>
-          <p class="product-sub" id="t-sub"></p>
-          <div class="actions">
-            <a class="btn btn-primary" id="t-buy" href="#comprar">Comprar agora</a>
-            <a class="btn btn-outline" id="t-whats" href="#" target="_blank" rel="noopener">Ainda tem dúvidas? Clique aqui</a>
+          <h1 class="product-title" id="prod-title">Carregando…</h1>
+          <p class="product-sub" id="prod-sub"></p>
+          <div class="badge-pill" id="guarantee">Compra garantida • Entrega imediata</div>
+
+          <!-- Ações do header (mentoria usa; materiais deixam só Whats aqui) -->
+          <div class="actions" id="header-actions" style="margin-top:10px;">
+            <a class="btn btn-primary" id="btn-buy" href="#" target="_blank" rel="noopener">Comprar agora</a>
+            <a class="btn btn-outline" id="btn-whats" href="#" target="_blank" rel="noopener">Ainda tem dúvidas? Clique aqui</a>
           </div>
         </div>
       </section>
 
-      <!-- Overlay da Mentoria -->
-      <div id="comprar-root" style="display:none;">
-        <div class="purchase-overlay" aria-hidden="true"></div>
-        <div class="purchase-panel" role="dialog" aria-modal="true" aria-labelledby="dlg-title">
-          <div class="purchase-head">
-            <h3 class="purchase-title" id="dlg-title">Escolha sua mentoria</h3>
-            <a class="close-x" href="#" aria-label="Fechar">✕</a>
-          </div>
-          <form class="stepper" onsubmit="return false;">
-            <div class="stage">
-              <div class="hint">1) Selecione o tipo</div>
-              <input type="radio" name="tipo" id="opt-com" />
-              <input type="radio" name="tipo" id="opt-sem" />
-              <div class="options">
-                <label for="opt-com">Mentoria com material</label>
-                <label for="opt-sem">Mentoria sem material</label>
-              </div>
-            </div>
-            <div class="stage">
-              <div class="hint">2) Escolha o plano</div>
-              <div class="plans-com">
-                <a id="link-com-mensal" class="plan-link" href="#" target="_blank" rel="noopener">Plano mensal</a>
-                <a id="link-com-trimestral" class="plan-link" href="#" target="_blank" rel="noopener">Plano trimestral</a>
-              </div>
-              <div class="plans-sem">
-                <a id="link-sem-mensal" class="plan-link" href="#" target="_blank" rel="noopener">Plano mensal</a>
-                <a id="link-sem-trimestral" class="plan-link" href="#" target="_blank" rel="noopener">Plano trimestral</a>
-              </div>
-            </div>
-          </form>
+      <!-- Copy-card (parágrafos + preço/ações no rodapé) -->
+      <section class="copy-card" id="copy-card">
+        <div id="copy-wrap"></div>
+
+        <!-- Rodapé de preço/ações (somente materiais) -->
+        <div class="copy-actions" id="price-actions" style="display:none;">
+          <div class="price-tag" id="prod-price"></div>
+          <a class="btn btn-primary" id="btn-buy-bottom" href="#" target="_blank" rel="noopener">Comprar agora</a>
+          <a class="btn btn-primary" id="btn-sample" href="#" target="_blank" rel="noopener" style="display:none;">Ver amostra</a>
+          <a class="btn btn-outline" id="btn-whats-bottom" href="#" target="_blank" rel="noopener">Ainda tem dúvidas? Clique aqui</a>
         </div>
-      </div>
+      </section>
 
       <div class="back-wrap"><a class="btn btn-outline" href="index.html">← Voltar</a></div>
     </div>
@@ -103,6 +64,39 @@
   <a class="fab-whatsapp" id="fab-whats" href="#" target="_blank" rel="noopener" aria-label="Abrir WhatsApp">
     <img src="assets/whatsapp.svg" width="26" height="26" alt="WhatsApp" />
   </a>
+
+  <!-- Overlay Mentoria -->
+  <div id="comprar-root" style="display:none;">
+    <div class="purchase-overlay" aria-hidden="true"></div>
+    <div class="purchase-panel" role="dialog" aria-modal="true" aria-labelledby="dlg-title">
+      <div class="purchase-head">
+        <h3 class="purchase-title" id="dlg-title">Escolha sua mentoria</h3>
+        <a class="close-x" href="#" aria-label="Fechar">✕</a>
+      </div>
+      <form class="stepper" onsubmit="return false;">
+        <div class="stage">
+          <div class="hint">1) Selecione o tipo</div>
+          <input type="radio" name="tipo" id="opt-com" />
+          <input type="radio" name="tipo" id="opt-sem" />
+          <div class="options">
+            <label for="opt-com">Mentoria com material</label>
+            <label for="opt-sem">Mentoria sem material</label>
+          </div>
+        </div>
+        <div class="stage">
+          <div class="hint">2) Escolha o plano</div>
+          <div class="plans-com">
+            <a id="link-com-mensal" class="plan-link" href="#" target="_blank" rel="noopener">Plano mensal</a>
+            <a id="link-com-trimestral" class="plan-link" href="#" target="_blank" rel="noopener">Plano trimestral</a>
+          </div>
+          <div class="plans-sem">
+            <a id="link-sem-mensal" class="plan-link" href="#" target="_blank" rel="noopener">Plano mensal</a>
+            <a id="link-sem-trimestral" class="plan-link" href="#" target="_blank" rel="noopener">Plano trimestral</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <footer class="site-footer" role="contentinfo">
     <div class="container footer-wrap">
@@ -120,8 +114,7 @@
     function normalize(s){
       return (s||'').toString()
         .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
-        .toLowerCase().replace(/[^a-z0-9]+/g,'-')
-        .replace(/(^-|-$)/g,'');
+        .toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
     }
     function resolveSlug(raw){
       const n = normalize(raw);
@@ -134,11 +127,11 @@
     }
     function notFound(){
       qs('#product-root').innerHTML = `
-        <section class="material-card"><div class="material-body">
+        <section class="copy-card">
           <h2 class="mt-0">Produto não encontrado</h2>
-          <p class="mt-8">Verifique o link. Você pode voltar para a página inicial e escolher novamente.</p>
-          <div class="price-actions"><a class="btn btn-primary" href="index.html">Voltar para a Home</a></div>
-        </div></section>`;
+          <p>Verifique o link. Você pode voltar para a página inicial e escolher novamente.</p>
+          <div class="copy-actions"><a class="btn btn-primary" href="index.html">Voltar para a Home</a></div>
+        </section>`;
       qs('#fab-whats').style.display = 'none';
       document.title = 'Produto não encontrado – PG Concursos';
     }
@@ -157,43 +150,39 @@
       const waMsg = data.whatsMessage || `Tenho dúvidas sobre ${data.title}`;
       const waLink = waNum ? `https://wa.me/${waNum}?text=${enc(waMsg)}` : '#';
       qs('#fab-whats').href = waLink;
+      qs('#btn-whats').href = waLink;
+      qs('#btn-whats-bottom').href = waLink;
+
+      // Header
+      qs('#prod-title').textContent = data.title;
+      qs('#prod-sub').textContent = data.subtitle || '';
+
+      // Copy em card (sempre justificada)
+      const copyWrap = qs('#copy-wrap'); copyWrap.innerHTML = '';
+      (data.copy || []).forEach(txt => {
+        const p = document.createElement('p'); p.textContent = txt; copyWrap.appendChild(p);
+      });
 
       if (data.type === 'mentoria') {
-        // Mostrar card de mentoria + overlay
-        const card = qs('#mentoria-card');
-        card.hidden = false;
-        qs('#t-title').textContent = data.title;
-        qs('#t-sub').textContent = data.subtitle || '';
-        qs('#t-whats').href = waLink;
-
+        // Mostrar overlay e esconder preço/ações do copy
         const comprarRoot = qs('#comprar-root'); comprarRoot.id = 'comprar'; comprarRoot.style.display = 'block';
-        qs('#t-buy').href = '#comprar';
+        qs('#btn-buy').href = '#comprar';
+        qs('#price-actions').style.display = 'none';
+        // Mentoria não usa "Ver amostra"
+        qs('#btn-sample').style.display = 'none';
+        // Planos
         qs('#link-com-mensal').href = data.checkout?.com?.mensal || '#';
         qs('#link-com-trimestral').href = data.checkout?.com?.trimestral || '#';
         qs('#link-sem-mensal').href = data.checkout?.sem?.mensal || '#';
         qs('#link-sem-trimestral').href = data.checkout?.sem?.trimestral || '#';
-        return;
+      } else {
+        // Materiais: preço + CTAs ficam NO RODAPÉ DO COPY-CARD
+        qs('#price-actions').style.display = 'flex';
+        if (data.price) qs('#prod-price').textContent = data.price;
+        qs('#btn-buy').style.display = 'none'; // header não precisa CTA primário nos materiais
+        qs('#btn-buy-bottom').href = data.checkoutUrl || '#';
+        if (data.sampleUrl){ qs('#btn-sample').href = data.sampleUrl; qs('#btn-sample').style.display = 'inline-flex'; }
       }
-
-      // ===== Materiais: card único =====
-      const mc = qs('#material-card');
-      mc.hidden = false;
-      qs('#m-title').textContent = data.title;
-      qs('#m-sub').textContent = data.subtitle || '';
-
-      // Copy
-      const copyEl = qs('#m-copy'); copyEl.innerHTML = '';
-      (data.copy || []).forEach(txt => {
-        const p = document.createElement('p');
-        p.textContent = txt; copyEl.appendChild(p);
-      });
-
-      // Preço + ações
-      if (data.price) qs('#m-price').textContent = data.price;
-      const buy = qs('#m-buy'), sample = qs('#m-sample'), whats = qs('#m-whats');
-      buy.href = data.checkoutUrl || '#';
-      if (data.sampleUrl){ sample.href = data.sampleUrl; sample.style.display = 'inline-flex'; }
-      whats.href = waLink;
     })();
   </script>
 </body>
