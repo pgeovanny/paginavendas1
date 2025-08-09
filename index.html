@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>PG Concursos - Dominando o Edital</title>
+  <meta name="description" content="Você está mais próximo da sua aprovação. Materiais e mentoria para concursos públicos com design limpo, conteúdo direto e foco na aprovação." />
+  <meta name="theme-color" content="#0b1b44" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="PG Concursos - Dominando o Edital" />
+  <meta property="og:description" content="Você está mais próximo da sua aprovação. Materiais e mentoria para concursos públicos." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="./" />
+  <meta property="og:image" content="./assets/manual-placeholder.jpg" />
+
+  <!-- Favicon opcional -->
+  <!-- <link rel="icon" href="./assets/favicon.ico" /> -->
+
+  <!-- CSS principal -->
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body class="page">
+
+  <!-- Header fixo -->
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <!-- Logo textual dupla -->
+      <a class="brand" href="./" aria-label="Página inicial - PG Concursos - Dominando o Edital">
+        <span class="brand-left">PG Concursos</span>
+        <span class="brand-divider" aria-hidden="true">×</span>
+        <span class="brand-right">Dominando o Edital</span>
+      </a>
+      <!-- Placeholder de navegação futura (se precisar) -->
+      <nav class="nav" aria-label="Menu principal"></nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="container hero-content">
+      <h1 id="hero-title" class="hero-title">Você está mais próximo da sua aprovação.</h1>
+      <p class="hero-subtitle">Materiais e mentoria com foco em resultado — visual limpo, conteúdo direto e estratégia.</p>
+      <!-- Glow decorativo -->
+      <div class="glow glow-hero" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <!-- Filtro e lista de produtos -->
+  <main id="conteudo" class="container main" role="main">
+    <section aria-labelledby="produtos-title" class="produtos">
+      <div class="produtos-head">
+        <h2 id="produtos-title" class="sec-title">Escolha seu caminho</h2>
+
+        <!-- Controle de filtro -->
+        <div class="filter" role="tablist" aria-label="Filtrar por categoria">
+          <button class="filter-btn is-active" role="tab" aria-selected="true" aria-controls="lista-materiais" id="tab-materiais" data-filter="materiais">
+            Materiais
+          </button>
+          <button class="filter-btn" role="tab" aria-selected="false" aria-controls="lista-mentorias" id="tab-mentorias" data-filter="mentorias">
+            Mentorias
+          </button>
+        </div>
+      </div>
+
+      <!-- Lista: Materiais -->
+      <div id="lista-materiais" class="produtos-grid" role="tabpanel" aria-labelledby="tab-materiais">
+        <!-- Manual do Aprovado -->
+        <a class="product-btn" href="./produto.html?p=manual" aria-label="Abrir produto: Manual do Aprovado">
+          <div class="product-btn-bg" aria-hidden="true"></div>
+          <div class="product-btn-inner">
+            <div class="product-icon" aria-hidden="true">📘</div>
+            <div class="product-texts">
+              <span class="product-title">Manual do Aprovado</span>
+              <span class="product-sub">O passo a passo definitivo para estudar certo e passar mais rápido.</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Legislação Interna TJ-SP 2025 -->
+        <a class="product-btn" href="./produto.html?p=legislacao" aria-label="Abrir produto: Legislação Interna TJ-SP 2025">
+          <div class="product-btn-bg" aria-hidden="true"></div>
+          <div class="product-btn-inner">
+            <div class="product-icon" aria-hidden="true">📑</div>
+            <div class="product-texts">
+              <span class="product-title">Legislação Interna TJ-SP 2025</span>
+              <span class="product-sub">Conteúdo direto, tabelado e com questões inéditas.</span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Lista: Mentorias (inicialmente oculta) -->
+      <div id="lista-mentorias" class="produtos-grid is-hidden" role="tabpanel" aria-labelledby="tab-mentorias">
+        <!-- Mentoria -->
+        <a class="product-btn" href="./produto.html?p=mentoria" aria-label="Abrir produto: Mentoria">
+          <div class="product-btn-bg" aria-hidden="true"></div>
+          <div class="product-btn-inner">
+            <div class="product-icon" aria-hidden="true">🎯</div>
+            <div class="product-texts">
+              <span class="product-title">Mentoria</span>
+              <span class="product-sub">Mentoria personalizada para planejar e acelerar sua aprovação.</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Rodapé simples -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <p class="muted">© <span id="year"></span> PG Concursos — Dominando o Edital. Todos os direitos reservados.</p>
+      <a class="footer-link" href="#" aria-label="Instagram PG Concursos">
+        <img class="icon" src="./assets/insta-icon.svg" alt="" aria-hidden="true" />
+        <span class="sr-only">Instagram</span>
+      </a>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="./js/products.js" defer></script>
+  <script src="./js/main.js" defer></script>
+</body>
+</html>
