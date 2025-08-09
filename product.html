@@ -9,18 +9,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
-  <script src="products.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
-  <header class="site-header" role="banner" aria-label="Cabeçalho">
+  <header class="site-header" role="banner">
     <div class="container header-wrap">
-      <a class="brand" href="index.html" aria-label="Ir para a página inicial">
-        <span class="brand-line brand-pg">PG Concursos</span>
-        <span class="brand-x" aria-hidden="true">×</span>
-        <span class="brand-line brand-de">Dominando o Edital</span>
-      </a>
+      <a class="brand" href="index.html"><span class="brand-line brand-pg">PG Concursos</span><span class="brand-x" aria-hidden="true">×</span><span class="brand-line brand-de">Dominando o Edital</span></a>
       <nav class="nav" aria-label="Principal">
         <a class="nav-link" href="index.html#produtos">Produtos</a>
         <a class="nav-link cta-small" href="index.html#produtos">Começar</a>
@@ -31,12 +26,10 @@
   <main id="conteudo" class="product-page">
     <div class="container product-container" id="product-root" aria-live="polite">
 
-      <!-- Header do produto (card premium) -->
+      <!-- Header do produto -->
       <section class="product-header-card" aria-labelledby="prod-title">
         <div class="product-body">
-          <div class="back-wrap">
-            <a class="btn btn-outline" href="index.html">← Voltar</a>
-          </div>
+          <div class="back-wrap"><a class="btn btn-outline" href="index.html">← Voltar</a></div>
 
           <h1 class="product-title" id="prod-title">Carregando…</h1>
           <p class="product-sub" id="prod-sub"></p>
@@ -44,26 +37,25 @@
 
           <div class="actions">
             <a class="btn btn-primary" id="btn-buy" href="#" target="_blank" rel="noopener">Comprar agora</a>
+            <a class="btn btn-outline" id="btn-sample" href="#" target="_blank" rel="noopener" style="display:none;">Ver amostra</a>
             <a class="btn btn-outline" id="btn-whats" href="#" target="_blank" rel="noopener">Ainda tem dúvidas? Clique aqui</a>
           </div>
         </div>
       </section>
 
-      <!-- Copy dividida em 3 cards -->
+      <!-- Copy em 3 cards -->
       <section class="content-grid" id="copy-grid"></section>
 
-      <div class="back-wrap">
-        <a class="btn btn-outline" href="index.html">← Voltar</a>
-      </div>
+      <div class="back-wrap"><a class="btn btn-outline" href="index.html">← Voltar</a></div>
     </div>
   </main>
 
-  <!-- Botão flutuante do WhatsApp (somente em páginas de produto) -->
+  <!-- WhatsApp flutuante -->
   <a class="fab-whatsapp" id="fab-whats" href="#" target="_blank" rel="noopener" aria-label="Abrir WhatsApp">
     <img src="assets/whatsapp.svg" width="26" height="26" alt="WhatsApp" />
   </a>
 
-  <!-- Overlay/Stepper para Mentoria (mantido como antes) -->
+  <!-- Mentoria (mantido) -->
   <div id="comprar-root" style="display:none;">
     <div class="purchase-overlay" aria-hidden="true"></div>
     <div class="purchase-panel" role="dialog" aria-modal="true" aria-labelledby="dlg-title">
@@ -71,7 +63,6 @@
         <h3 class="purchase-title" id="dlg-title">Escolha sua mentoria</h3>
         <a class="close-x" href="#" aria-label="Fechar">✕</a>
       </div>
-
       <form class="stepper" onsubmit="return false;">
         <div class="stage">
           <div class="hint">1) Selecione o tipo</div>
@@ -82,15 +73,12 @@
             <label for="opt-sem">Mentoria sem material</label>
           </div>
         </div>
-
         <div class="stage">
           <div class="hint">2) Escolha o plano</div>
-
           <div class="plans-com">
             <a id="link-com-mensal" class="plan-link" href="#" target="_blank" rel="noopener">Plano mensal</a>
             <a id="link-com-trimestral" class="plan-link" href="#" target="_blank" rel="noopener">Plano trimestral</a>
           </div>
-
           <div class="plans-sem">
             <a id="link-sem-mensal" class="plan-link" href="#" target="_blank" rel="noopener">Plano mensal</a>
             <a id="link-sem-trimestral" class="plan-link" href="#" target="_blank" rel="noopener">Plano trimestral</a>
@@ -103,21 +91,35 @@
   <footer class="site-footer" role="contentinfo">
     <div class="container footer-wrap">
       <small>© <span id="year"></span> PG Concursos — Dominando o Edital. Todos os direitos reservados.</small>
-      <div class="footer-links">
-        <a href="#" aria-label="Termos de uso">Termos</a>
-        <span class="sep">•</span>
-        <a href="#" aria-label="Política de privacidade">Privacidade</a>
-      </div>
+      <div class="footer-links"><a href="#">Termos</a><span class="sep">•</span><a href="#">Privacidade</a></div>
     </div>
   </footer>
 
+  <!-- 1) Catálogo sempre carrega antes do script -->
+  <script src="products.js"></script>
+  <!-- 2) Script da página -->
   <script>
     const qs = (s, el=document) => el.querySelector(s);
-    const qsa = (s, el=document) => Array.from(el.querySelectorAll(s));
     const param = (k) => new URLSearchParams(location.search).get(k);
     const enc = encodeURIComponent;
-
     qs('#year').textContent = new Date().getFullYear();
+
+    // Normaliza slugs e mapeia aliases
+    function normalize(s){
+      return (s||'').toString()
+        .normalize('NFD').replace(/[\u0300-\u036f]/g,'')   // remove acentos
+        .toLowerCase().replace(/[^a-z0-9]+/g,'-')         // troca por hífen
+        .replace(/(^-|-$)/g,'');
+    }
+    function resolveSlug(raw){
+      const n = normalize(raw);
+      const alias = {
+        'manual':'manual','manual-do-aprovado':'manual',
+        'legislacao':'legislacao','legislacao-interna':'legislacao','legislacao-interna-tj-sp-2025':'legislacao',
+        'mentoria':'mentoria'
+      };
+      return alias[n] || n;
+    }
 
     function notFound() {
       qs('#product-root').innerHTML = `
@@ -125,41 +127,42 @@
           <div class="product-body">
             <h2 class="mt-0">Produto não encontrado</h2>
             <p class="mt-8">Verifique o link. Você pode voltar para a página inicial e escolher novamente.</p>
-            <div class="actions">
-              <a class="btn btn-primary" href="index.html">Voltar para a Home</a>
-            </div>
+            <div class="actions"><a class="btn btn-primary" href="index.html">Voltar para a Home</a></div>
           </div>
         </section>`;
-      qs('#fab-whats').style.display = 'none';
+      const fab = qs('#fab-whats'); if (fab) fab.style.display = 'none';
       document.title = 'Produto não encontrado – PG Concursos';
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-      const slug = (param('p') || '').toLowerCase();
-      if (!window.PRODUCTS || !slug || !window.PRODUCTS[slug]) {
-        notFound(); return;
-      }
+    (function init(){
+      const raw = param('p');
+      if (!raw || typeof window.PRODUCTS !== 'object') { notFound(); return; }
+      const key = resolveSlug(raw);
+      const data = window.PRODUCTS[key];
+      if (!data) { notFound(); return; }
 
-      const data = window.PRODUCTS[slug];
+      // SEO
       document.title = `${data.title} – PG Concursos`;
 
+      // Header
       qs('#prod-title').textContent = data.title;
       qs('#prod-sub').textContent = data.subtitle || '';
+      if (data.price) { qs('#prod-price').style.display = 'block'; qs('#prod-price').textContent = data.price; }
 
-      if (data.price) {
-        qs('#prod-price').style.display = 'block';
-        qs('#prod-price').textContent = data.price;
-      }
+      // Links/CTAs
+      const buyBtn = qs('#btn-buy');
+      const sampleBtn = qs('#btn-sample');
 
       // WhatsApp
       const waNum = data.whatsNumber || '';
       const waMsg = data.whatsMessage || `Tenho dúvidas sobre ${data.title}`;
       const waLink = waNum ? `https://wa.me/${waNum}?text=${enc(waMsg)}` : '#';
-      qs('#btn-whats').href = waLink;
-      qs('#fab-whats').href = waLink;
+      qs('#btn-whats').href = waLink; qs('#fab-whats').href = waLink;
+
+      // Amostra (opcional)
+      if (data.sampleUrl) { sampleBtn.href = data.sampleUrl; sampleBtn.style.display = 'inline-flex'; }
 
       // Comprar
-      const buyBtn = qs('#btn-buy');
       if (data.type === 'mentoria') {
         buyBtn.removeAttribute('target'); buyBtn.removeAttribute('rel'); buyBtn.href = '#comprar';
         const comprarRoot = qs('#comprar-root'); comprarRoot.id = 'comprar'; comprarRoot.style.display = 'block';
@@ -171,25 +174,20 @@
         buyBtn.href = data.checkoutUrl || '#';
       }
 
-      // -------- Copy -> dividir em 3 cards modernos --------
-      const copy = Array.isArray(data.copy) ? data.copy.slice() : [];
+      // Copy -> dividir em 3 cards (robusto mesmo se poucos parágrafos)
       const grid = qs('#copy-grid');
-      const chunks = [[],[],[]];
-      // distribuição balanceada
-      copy.forEach((par, i) => chunks[i % 3].push(par));
-
+      const copy = Array.isArray(data.copy) ? data.copy.slice() : [];
+      const cols = 3;
+      const chunks = Array.from({length: cols}, () => []);
+      copy.forEach((par, i) => chunks[i % cols].push(par));
       chunks.forEach(group => {
         if (!group.length) return;
         const card = document.createElement('article');
         card.className = 'content-card';
-        group.forEach(txt => {
-          const p = document.createElement('p');
-          p.textContent = txt;
-          card.appendChild(p);
-        });
+        group.forEach(txt => { const p = document.createElement('p'); p.textContent = txt; card.appendChild(p); });
         grid.appendChild(card);
       });
-    });
+    })();
   </script>
 </body>
 </html>
