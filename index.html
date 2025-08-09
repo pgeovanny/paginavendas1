@@ -10,12 +10,18 @@
   <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
+  <!-- Header -->
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="./"><span class="brand-left">PG Concursos</span><span class="brand-divider">×</span><span class="brand-right">Dominando o Edital</span></a>
+      <a class="brand" href="./">
+        <span class="brand-left">PG Concursos</span>
+        <span class="brand-divider">×</span>
+        <span class="brand-right">Dominando o Edital</span>
+      </a>
     </div>
   </header>
 
+  <!-- Hero -->
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero-bg" aria-hidden="true"></div>
     <h1 id="hero-title" class="hero-title">
@@ -24,6 +30,7 @@
     <div class="glow-hero" aria-hidden="true"></div>
   </section>
 
+  <!-- Conteúdo -->
   <main class="container" style="padding:2rem 0 3rem">
     <section aria-labelledby="produtos-title">
       <div class="produtos-head">
@@ -33,7 +40,9 @@
         <div class="select" data-open="false">
           <button class="select-trigger" id="filter-trigger" aria-haspopup="listbox" aria-expanded="false">
             <span id="filter-label">Materiais</span>
-            <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
           </button>
           <ul class="select-menu" id="filter-menu" role="listbox" tabindex="-1" aria-label="Selecionar categoria">
             <li class="select-option" role="option" data-value="materiais" aria-selected="true">Materiais</li>
@@ -66,14 +75,16 @@
     </section>
   </main>
 
+  <!-- Rodapé -->
   <footer class="site-footer">
     <div class="container footer-inner">
       <p class="muted">© <span id="year"></span> PG Concursos — Dominando o Edital. Todos os direitos reservados.</p>
     </div>
   </footer>
 
+  <!-- Script inline: ano + filtro -->
   <script>
-    // ano
+    // ano rodapé
     (function(){var y=document.getElementById('year'); if(y) y.textContent=new Date().getFullYear();})();
 
     // dropdown filtro
@@ -86,52 +97,21 @@
       var listMateriais = document.getElementById('lista-materiais');
       var listMentorias = document.getElementById('lista-mentorias');
 
-      function openMenu() {
-        select.dataset.open = 'true';
-        trigger.setAttribute('aria-expanded', 'true');
-        menu.focus();
-      }
-      function closeMenu() {
-        select.dataset.open = 'false';
-        trigger.setAttribute('aria-expanded', 'false');
-      }
-      function setValue(val) {
-        if (val === 'mentorias') {
-          label.textContent = 'Mentorias';
-          listMateriais.classList.add('is-hidden');
-          listMentorias.classList.remove('is-hidden');
-        } else {
-          label.textContent = 'Materiais';
-          listMateriais.classList.remove('is-hidden');
-          listMentorias.classList.add('is-hidden');
-        }
-        options.forEach(o => o.setAttribute('aria-selected', String(o.dataset.value === val)));
+      function openMenu(){ select.dataset.open='true'; trigger.setAttribute('aria-expanded','true'); menu.focus(); }
+      function closeMenu(){ select.dataset.open='false'; trigger.setAttribute('aria-expanded','false'); }
+      function setValue(val){
+        if(val==='mentorias'){ label.textContent='Mentorias'; listMateriais.classList.add('is-hidden'); listMentorias.classList.remove('is-hidden'); }
+        else{ label.textContent='Materiais'; listMateriais.classList.remove('is-hidden'); listMentorias.classList.add('is-hidden'); }
+        options.forEach(o=>o.setAttribute('aria-selected', String(o.dataset.value===val)));
       }
 
-      trigger.addEventListener('click', function (e) {
-        e.preventDefault();
-        (select.dataset.open === 'true') ? closeMenu() : openMenu();
-      });
+      trigger.addEventListener('click', function(e){ e.preventDefault(); (select.dataset.open==='true') ? closeMenu() : openMenu(); });
+      options.forEach(function(opt){ opt.addEventListener('click', function(){ setValue(opt.dataset.value); closeMenu(); trigger.focus(); }); });
+      document.addEventListener('click', function(e){ if(!select.contains(e.target)) closeMenu(); });
+      document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeMenu(); });
 
-      options.forEach(function (opt) {
-        opt.addEventListener('click', function () {
-          setValue(opt.dataset.value);
-          closeMenu();
-          trigger.focus();
-        });
-      });
-
-      // fecha ao clicar fora / Esc
-      document.addEventListener('click', function (e) {
-        if (!select.contains(e.target)) closeMenu();
-      });
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') closeMenu();
-      });
-
-      // inicia via hash (index.html#mentorias)
-      if (window.location.hash === '#mentorias') setValue('mentorias');
-      else setValue('materiais');
+      // iniciar por hash
+      if (window.location.hash === '#mentorias') setValue('mentorias'); else setValue('materiais');
     })();
   </script>
 </body>
