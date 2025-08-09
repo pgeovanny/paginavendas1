@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Produto | PG Concursos - Dominando o Edital</title>
+  <meta name="description" content="Página do produto - materiais e mentoria para concursos públicos." />
+  <meta name="theme-color" content="#0b1b44" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="PG Concursos - Dominando o Edital" />
+  <meta property="og:description" content="Materiais e mentoria para concursos públicos." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="./assets/manual-placeholder.jpg" />
+
+  <!-- CSS principal (na raiz) -->
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <!-- Header fixo -->
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a class="brand" href="./" aria-label="Página inicial - PG Concursos - Dominando o Edital">
+        <span class="brand-left">PG Concursos</span>
+        <span class="brand-divider" aria-hidden="true">×</span>
+        <span class="brand-right">Dominando o Edital</span>
+      </a>
+      <nav class="nav" aria-label="Menu principal"></nav>
+    </div>
+  </header>
+
+  <main class="container" role="main" style="padding: 2rem 0;">
+    <!-- Botão Voltar -->
+    <p style="margin-bottom: 1rem;">
+      <a href="./" class="filter-btn" aria-label="Voltar para a página inicial">← Voltar</a>
+    </p>
+
+    <article id="product-content" aria-labelledby="product-title" style="display:grid; gap:1.5rem;">
+      <!-- Imagem do produto -->
+      <div>
+        <img
+          id="product-image"
+          src=""
+          alt="Imagem do produto"
+          style="width:100%; max-width:920px; border-radius:10px; box-shadow:0 8px 20px rgba(0,0,0,0.4);"
+          onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 630%22%3E%3Cdefs%3E%3ClinearGradient id=%22g%22 x1=%220%25%22 y1=%220%25%22 x2=%22100%25%22 y2=%22100%25%22%3E%3Cstop stop-color=%22%2307112c%22 offset=%220%25%22/%3E%3Cstop stop-color=%22%230e1f4b%22 offset=%2250%25%22/%3E%3Cstop stop-color=%22%23142a66%22 offset=%22100%25%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=%221200%22 height=%22630%22 fill=%22url(%23g)%22/%3E%3C/svg%3E';"
+        />
+      </div>
+
+      <!-- Título e subtítulo -->
+      <header>
+        <h1 id="product-title" class="hero-title" style="text-align:left;">&nbsp;</h1>
+        <p id="product-subtitle" class="hero-subtitle" style="text-align:left; margin-top:.25rem;">&nbsp;</p>
+      </header>
+
+      <!-- Preço -->
+      <div id="product-price" class="filter-btn" style="display:none; width:max-content; cursor:default;" aria-live="polite"></div>
+
+      <!-- Copy -->
+      <section id="product-copy" class="muted" style="font-size:1rem;"></section>
+
+      <!-- Garantias / segurança da compra (texto curto e limpo) -->
+      <section aria-label="Informações de compra" class="muted" style="font-size:0.95rem;">
+        Compra 100% segura • Checkout protegido • Acesso imediato ao material • Suporte por WhatsApp
+      </section>
+
+      <!-- CTA WhatsApp (texto) -->
+      <p style="margin-top:.5rem;">
+        <a id="whatsapp-cta" class="filter-btn" href="#" target="_blank" rel="noopener" aria-label="Ainda tem dúvidas? Fale no WhatsApp">
+          Ainda tem dúvidas? Clique aqui
+        </a>
+      </p>
+
+      <!-- Botão Comprar (comportamento varia por produto) -->
+      <div style="margin-top:.5rem;">
+        <a id="buy-button" class="product-btn" href="#" role="button" aria-label="Comprar agora">
+          <div class="product-btn-bg" aria-hidden="true"></div>
+          <div class="product-btn-inner">
+            <div class="product-icon" aria-hidden="true">🛒</div>
+            <div class="product-texts">
+              <span class="product-title">Comprar Agora</span>
+              <span class="product-sub">Finalize a compra em ambiente seguro.</span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Fluxo especial da Mentoria (aparece só quando p=mentoria) -->
+      <div id="mentoria-options" style="display:none; gap:0.5rem; flex-wrap:wrap;">
+        <button id="with-material" class="filter-btn" type="button" aria-label="Mentoria com material">Mentoria com material</button>
+        <button id="without-material" class="filter-btn" type="button" aria-label="Mentoria sem material">Mentoria sem material</button>
+      </div>
+
+      <div id="mentoria-plans" style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:.5rem;"></div>
+
+      <!-- Botão Voltar (final) -->
+      <p style="margin-top:1rem;">
+        <a href="./" class="filter-btn" aria-label="Voltar para a página inicial">← Voltar</a>
+      </p>
+    </article>
+  </main>
+
+  <!-- WhatsApp flutuante (apenas nesta página) -->
+  <a id="whatsapp-float" href="#" target="_blank" rel="noopener"
+     aria-label="Contato rápido pelo WhatsApp"
+     style="
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      width: 56px;
+      height: 56px;
+      background:#25D366;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:50%;
+      box-shadow:0 10px 24px rgba(0,0,0,0.4);
+      z-index: 1001;
+     ">
+    <span class="sr-only">WhatsApp</span>
+    <!-- Ícone simples em SVG inline para não depender de /assets -->
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff" aria-hidden="true">
+      <path d="M20.52 3.48A11.95 11.95 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.15 1.6 5.95L0 24l6.2-1.62A11.96 11.96 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.2-3.48-8.52zM12 22a9.93 9.93 0 0 1-5.06-1.39l-.36-.21-3.67.96.98-3.58-.24-.37A10 10 0 1 1 22 12c0 5.52-4.48 10-10 10zm5.29-7.36c-.29-.15-1.7-.84-1.96-.94-.26-.1-.45-.15-.65.15-.19.29-.75.94-.92 1.13-.17.19-.34.2-.63.05-.29-.15-1.21-.44-2.31-1.41-.85-.76-1.42-1.7-1.58-1.98-.17-.29-.02-.45.13-.6.13-.13.29-.34.43-.51.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.15-.65-1.57-.89-2.15-.23-.56-.47-.49-.65-.5h-.56c-.19 0-.5.07-.76.36-.26.29-1 1-1 2.43 0 1.43 1.03 2.81 1.17 3 .15.19 2.03 3.09 4.93 4.33.69.3 1.23.48 1.65.62.69.22 1.31.19 1.8.11.55-.08 1.7-.7 1.94-1.38.24-.68.24-1.27.17-1.38-.07-.11-.26-.18-.55-.33z"/>
+    </svg>
+  </a>
+
+  <!-- Rodapé -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <p class="muted">© <span id="year"></span> PG Concursos — Dominando o Edital. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts (na raiz) -->
+  <script src="./products.js"></script>
+
+  <!-- Ajustes de links de WhatsApp e ano do rodapé -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Atualiza ano no rodapé
+      var y = document.getElementById('year');
+      if (y) y.textContent = new Date().getFullYear();
+
+      // Configura CTA de dúvidas (usa whatsappConfig do products.js)
+      try {
+        if (typeof whatsappConfig !== 'undefined') {
+          var msg = encodeURIComponent(whatsappConfig.mensagem);
+          var wa = 'https://wa.me/' + whatsappConfig.numero + '?text=' + msg;
+          var cta = document.getElementById('whatsapp-cta');
+          if (cta) cta.href = wa;
+        }
+      } catch (e) { /* silencioso */ }
+    });
+  </script>
+</body>
+</html>
