@@ -12,8 +12,6 @@
   <meta property="og:title" content="PG Concursos – Dominando o Edital" />
   <meta property="og:description" content="Materiais e mentoria para concursos com foco total na sua aprovação." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://seu-netlify.app/" />
-  <meta property="og:image" content="https://via.placeholder.com/1200x630.png?text=PG+Concursos" />
 </head>
 <body>
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -45,14 +43,16 @@
 
           <div class="filter-switch" role="tablist" aria-label="Filtro de produtos">
             <div class="seg-indicator" aria-hidden="true"></div>
-            <button class="seg-pill" role="tab" id="tab-materiais" aria-selected="true">Materiais</button>
+            <!-- Começa sem seleção -->
+            <button class="seg-pill" role="tab" id="tab-materiais" aria-selected="false">Materiais</button>
             <button class="seg-pill" role="tab" id="tab-mentoria" aria-selected="false">Mentoria</button>
           </div>
 
           <p class="filter-note" id="filter-note">Selecione uma categoria para ver as opções disponíveis.</p>
 
           <div class="product-grid" aria-live="polite">
-            <a class="product-card" data-cat="materiais" href="product.html?p=manual" role="button" aria-label="Abrir produto Manual do Aprovado">
+            <!-- Materiais -->
+            <a class="product-card is-hidden" data-cat="materiais" href="product.html?p=manual" aria-label="Manual do Aprovado">
               <div class="shine"></div>
               <div class="pc-badge">PDF</div>
               <h3 class="pc-title">Manual do Aprovado</h3>
@@ -60,7 +60,7 @@
               <span class="pc-cta">Ver detalhes</span>
             </a>
 
-            <a class="product-card" data-cat="materiais" href="product.html?p=legislacao" role="button" aria-label="Abrir produto Legislação Interna TJ-SP 2025">
+            <a class="product-card is-hidden" data-cat="materiais" href="product.html?p=legislacao" aria-label="Legislação Interna TJ-SP 2025">
               <div class="shine"></div>
               <div class="pc-badge">PDF</div>
               <h3 class="pc-title">Legislação Interna TJ-SP 2025</h3>
@@ -68,7 +68,8 @@
               <span class="pc-cta">Ver detalhes</span>
             </a>
 
-            <a class="product-card" data-cat="mentoria" href="product.html?p=mentoria" role="button" aria-label="Abrir produto Mentoria">
+            <!-- Mentoria -->
+            <a class="product-card is-hidden" data-cat="mentoria" href="product.html?p=mentoria" aria-label="Mentoria">
               <div class="shine"></div>
               <div class="pc-badge">Mentoria</div>
               <h3 class="pc-title">Mentoria</h3>
@@ -85,9 +86,9 @@
     <div class="container footer-wrap">
       <small>© <span id="year"></span> PG Concursos — Dominando o Edital. Todos os direitos reservados.</small>
       <div class="footer-links">
-        <a href="#" aria-label="Termos de uso">Termos</a>
+        <a href="#">Termos</a>
         <span class="sep">•</span>
-        <a href="#" aria-label="Política de privacidade">Privacidade</a>
+        <a href="#">Privacidade</a>
       </div>
     </div>
   </footer>
@@ -107,28 +108,22 @@
       const note = $('#filter-note');
 
       function positionIndicator(btn){
-        const left = btn.offsetLeft;
-        const width = btn.offsetWidth;
-        indicator.style.left = left + 'px';
-        indicator.style.width = width + 'px';
+        indicator.style.opacity = '1';
+        indicator.style.left = btn.offsetLeft + 'px';
+        indicator.style.width = btn.offsetWidth + 'px';
       }
 
       function showCategory(cat){
-        cards.forEach(card => {
-          const match = card.dataset.cat === cat;
-          card.classList.toggle('is-hidden', !match);
-        });
+        cards.forEach(card => card.classList.toggle('is-hidden', card.dataset.cat !== cat));
       }
 
       function selectTab(btn){
         tabs.forEach(t => t.setAttribute('aria-selected', t === btn ? 'true' : 'false'));
         positionIndicator(btn);
-        const cat = (btn === tabMentoria) ? 'mentoria' : 'materiais';
-        showCategory(cat);
-        if(note) note.style.display = 'none';
+        showCategory(btn === tabMentoria ? 'mentoria' : 'materiais');
+        if (note) note.style.display = 'none';
       }
 
-      // eventos
       tabs.forEach(btn => {
         btn.addEventListener('click', () => selectTab(btn));
         btn.addEventListener('keydown', (e) => {
@@ -143,9 +138,11 @@
         });
       });
 
-      // inicial: Materiais selecionado (esconde mentoria)
-      selectTab(tabMateriais);
-      window.addEventListener('resize', () => positionIndicator($('.seg-pill[aria-selected="true"]')));
+      // inicia sem seleção (cards ocultos)
+      window.addEventListener('resize', () => {
+        const active = $('.seg-pill[aria-selected="true"]');
+        if (active) positionIndicator(active);
+      });
     })();
   </script>
 </body>
