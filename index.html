@@ -5,15 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>PG Concursos - Dominando o Edital</title>
-  <meta name="description" content="Você está mais próximo da sua aprovação. Materiais e mentoria para concursos públicos com design limpo, conteúdo direto e foco em resultado." />
+  <meta name="description" content="Você está mais próximo da sua aprovação." />
   <meta name="theme-color" content="#0b1b44" />
 
   <!-- Open Graph -->
   <meta property="og:title" content="PG Concursos - Dominando o Edital" />
-  <meta property="og:description" content="Você está mais próximo da sua aprovação. Materiais e mentoria para concursos públicos." />
+  <meta property="og:description" content="Você está mais próximo da sua aprovação." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="./" />
   <meta property="og:image" content="./assets/manual-placeholder.jpg" />
+
+  <!-- Tipografia moderna -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
   <!-- CSS principal (na raiz) -->
   <link rel="stylesheet" href="./styles.css" />
@@ -23,7 +26,6 @@
   <!-- Header fixo -->
   <header class="site-header" role="banner">
     <div class="container header-inner">
-      <!-- Logo textual dupla -->
       <a class="brand" href="./" aria-label="Página inicial - PG Concursos - Dominando o Edital">
         <span class="brand-left">PG Concursos</span>
         <span class="brand-divider" aria-hidden="true">×</span>
@@ -33,68 +35,65 @@
     </div>
   </header>
 
-  <!-- Hero -->
+  <!-- Hero moderno -->
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-noise" aria-hidden="true"></div>
     <div class="container hero-content">
-      <h1 id="hero-title" class="hero-title">Você está mais próximo da sua aprovação.</h1>
-      <p class="hero-subtitle">Materiais e mentoria com foco em resultado — visual limpo, conteúdo direto e estratégia.</p>
+      <h1 id="hero-title" class="hero-title gradient-text">
+        Você está mais <span class="underline-glow">próximo</span> da sua aprovação.
+      </h1>
+      <!-- REMOVIDO: subtítulo solicitado -->
       <div class="glow glow-hero" aria-hidden="true"></div>
     </div>
   </section>
 
   <!-- Conteúdo -->
-  <main id="conteudo" class="container main" role="main" style="padding: 2rem 0;">
+  <main id="conteudo" class="container main" role="main" style="padding: 2.25rem 0 3rem;">
     <section aria-labelledby="produtos-title" class="produtos">
       <div class="produtos-head">
         <h2 id="produtos-title" class="sec-title">Escolha seu caminho</h2>
 
-        <!-- Filtro -->
-        <div class="filter" role="tablist" aria-label="Filtrar por categoria">
-          <button class="filter-btn is-active" role="tab" aria-selected="true" aria-controls="lista-materiais" id="tab-materiais" data-filter="materiais">
+        <!-- Filtro como lista selecionável (chips) -->
+        <div class="chip-list" role="tablist" aria-label="Filtrar por categoria">
+          <button class="chip is-active" role="tab" aria-selected="true" aria-controls="lista-materiais" id="tab-materiais" data-filter="materiais">
             Materiais
           </button>
-          <button class="filter-btn" role="tab" aria-selected="false" aria-controls="lista-mentorias" id="tab-mentorias" data-filter="mentorias">
+          <button class="chip" role="tab" aria-selected="false" aria-controls="lista-mentorias" id="tab-mentorias" data-filter="mentorias">
             Mentorias
           </button>
         </div>
       </div>
 
       <!-- Materiais -->
-      <div id="lista-materiais" class="produtos-grid" role="tabpanel" aria-labelledby="tab-materiais">
-        <a class="product-btn" href="./product.html?p=manual" aria-label="Abrir produto: Manual do Aprovado">
-          <div class="product-btn-bg" aria-hidden="true"></div>
-          <div class="product-btn-inner">
-            <div class="product-icon" aria-hidden="true">📘</div>
-            <div class="product-texts">
-              <span class="product-title">Manual do Aprovado</span>
-              <span class="product-sub">O passo a passo definitivo para estudar certo e passar mais rápido.</span>
-            </div>
+      <div id="lista-materiais" class="cards-grid" role="tabpanel" aria-labelledby="tab-materiais">
+        <a class="card-btn" href="./product.html?p=manual" aria-label="Abrir produto: Manual do Aprovado">
+          <div class="card-outline" aria-hidden="true"></div>
+          <div class="card-inner">
+            <span class="card-title">Manual do Aprovado</span>
+            <span class="card-sub">O passo a passo definitivo para estudar certo e passar mais rápido.</span>
+            <span class="card-cta">Ver detalhes</span>
           </div>
         </a>
 
-        <a class="product-btn" href="./product.html?p=legislacao" aria-label="Abrir produto: Legislação Interna TJ-SP 2025">
-          <div class="product-btn-bg" aria-hidden="true"></div>
-          <div class="product-btn-inner">
-            <div class="product-icon" aria-hidden="true">📑</div>
-            <div class="product-texts">
-              <span class="product-title">Legislação Interna TJ-SP 2025</span>
-              <span class="product-sub">Conteúdo direto, tabelado e com questões inéditas.</span>
-            </div>
+        <a class="card-btn" href="./product.html?p=legislacao" aria-label="Abrir produto: Legislação Interna TJ-SP 2025">
+          <div class="card-outline" aria-hidden="true"></div>
+          <div class="card-inner">
+            <span class="card-title">Legislação Interna TJ-SP 2025</span>
+            <span class="card-sub">Conteúdo direto, tabelado e com questões inéditas.</span>
+            <span class="card-cta">Ver detalhes</span>
           </div>
         </a>
       </div>
 
       <!-- Mentorias (inicialmente oculta) -->
-      <div id="lista-mentorias" class="produtos-grid is-hidden" role="tabpanel" aria-labelledby="tab-mentorias">
-        <a class="product-btn" href="./product.html?p=mentoria" aria-label="Abrir produto: Mentoria">
-          <div class="product-btn-bg" aria-hidden="true"></div>
-          <div class="product-btn-inner">
-            <div class="product-icon" aria-hidden="true">🎯</div>
-            <div class="product-texts">
-              <span class="product-title">Mentoria</span>
-              <span class="product-sub">Mentoria personalizada para planejar e acelerar sua aprovação.</span>
-            </div>
+      <div id="lista-mentorias" class="cards-grid is-hidden" role="tabpanel" aria-labelledby="tab-mentorias">
+        <a class="card-btn" href="./product.html?p=mentoria" aria-label="Abrir produto: Mentoria">
+          <div class="card-outline" aria-hidden="true"></div>
+          <div class="card-inner">
+            <span class="card-title">Mentoria</span>
+            <span class="card-sub">Mentoria personalizada para planejar e acelerar sua aprovação.</span>
+            <span class="card-cta">Ver detalhes</span>
           </div>
         </a>
       </div>
@@ -110,13 +109,13 @@
 
   <!-- Script da página (inline) -->
   <script>
-    // Atualiza ano do rodapé
+    // Ano no rodapé
     (function () {
       var y = document.getElementById('year');
       if (y) y.textContent = new Date().getFullYear();
     })();
 
-    // Lógica do filtro Materiais | Mentorias
+    // Filtro (chips)
     (function () {
       var tabMateriais = document.getElementById('tab-materiais');
       var tabMentorias = document.getElementById('tab-mentorias');
@@ -124,18 +123,12 @@
       var listaMentorias = document.getElementById('lista-mentorias');
 
       function setActive(tab) {
-        // atualiza estados visuais
         [tabMateriais, tabMentorias].forEach(function (btn) {
-          if (btn === tab) {
-            btn.classList.add('is-active');
-            btn.setAttribute('aria-selected', 'true');
-          } else {
-            btn.classList.remove('is-active');
-            btn.setAttribute('aria-selected', 'false');
-          }
+          var active = btn === tab;
+          btn.classList.toggle('is-active', active);
+          btn.setAttribute('aria-selected', active ? 'true' : 'false');
         });
 
-        // troca as listas
         var isMateriais = tab.getAttribute('data-filter') === 'materiais';
         listaMateriais.classList.toggle('is-hidden', !isMateriais);
         listaMentorias.classList.toggle('is-hidden', isMateriais);
@@ -144,10 +137,7 @@
       tabMateriais.addEventListener('click', function () { setActive(tabMateriais); });
       tabMentorias.addEventListener('click', function () { setActive(tabMentorias); });
 
-      // Se desejar iniciar via hash (ex: index.html#mentorias)
-      if (window.location.hash === '#mentorias') {
-        setActive(tabMentorias);
-      }
+      if (window.location.hash === '#mentorias') setActive(tabMentorias);
     })();
   </script>
 </body>
